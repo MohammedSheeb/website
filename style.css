@@ -759,3 +759,27 @@ footer{
 .game-logo{
   height:10px;
 }
+
+/* يخلي الرابط ما يغير الشكل */
+.discord-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+
+/* تأثير */
+.discord-card{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+}
+
+/* Hover */
+.discord-card:hover{
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* ضغط */
+.discord-card:active{
+  transform: scale(0.97);
+}
