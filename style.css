@@ -383,8 +383,8 @@ header.scrolled{
 .icons-wrap{
   max-width:760px;
   margin:0 auto;
-  padding:4px 10px 6px;
-  overflow:hidden;
+  padding:12px 10px 10px;
+  overflow:visible;
 }
 
 .icons{
@@ -393,6 +393,7 @@ header.scrolled{
   gap:10px;
   width:100%;
   align-items:center;
+  padding-top:8px;
 }
 
 .icons a{
@@ -418,6 +419,8 @@ header.scrolled{
 }
 
 .icons a i{
+  position:relative;
+  z-index:1;
   transition:transform 0.28s ease;
 }
 
@@ -436,10 +439,15 @@ header.scrolled{
 }
 
 .icons a:active{
-  transform:scale(0.94);
+  transform:translateY(-2px) scale(0.97);
   box-shadow:
     0 4px 12px rgba(229,9,20,0.22),
     inset 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.icons a:focus,
+.icons a:active{
+  outline:none;
 }
 
 footer{
