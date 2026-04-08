@@ -30,18 +30,26 @@ body{
 }
 
 /* 🔥 خلفية ثابتة 100% *//* 🔥 خلفية ثابتة لكل الأجهزة */
+/* 🔥 خلفية ثابتة + سوداء قبل التحميل */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("bg-vertical.jpg") center/cover no-repeat;
+  background: #000 url("bg-vertical.jpg") center/cover no-repeat;
 }
 
-/* 🔄 إذا الشاشة صارت أفقية (أي جهاز) */
+/* 📱 إذا الشاشة أفقية (أي جهاز) */
 @media (orientation: landscape) {
   body::before {
-    background: url("bg-horizontal.jpg") center/cover no-repeat;
+    background: #000 url("bg-horizontal.jpg") center/cover no-repeat;
+  }
+}
+
+/* 💻 إذا الشاشة كبيرة (تابلت + كمبيوتر) */
+@media (min-width: 768px) {
+  body::before {
+    background: #000 url("bg-horizontal.jpg") center/cover no-repeat;
   }
 }
 
