@@ -29,19 +29,19 @@ body{
   overflow-x:hidden;
 }
 
-/* 🔥 خلفية ثابتة 100% */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:url("bg-vertical.jpg") center/cover no-repeat;
+/* 🔥 خلفية ثابتة 100% *//* 🔥 خلفية ثابتة لكل الأجهزة */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("bg-vertical.jpg") center/cover no-repeat;
 }
 
-/* 💻 إذا الشاشة أفقية */
-@media (orientation: landscape){
-  body::before{
-    background:url("bg-horizontal.jpg") center/cover no-repeat;
+/* 🔄 إذا الشاشة صارت أفقية (أي جهاز) */
+@media (orientation: landscape) {
+  body::before {
+    background: url("bg-horizontal.jpg") center/cover no-repeat;
   }
 }
 
