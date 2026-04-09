@@ -891,3 +891,10 @@ footer{
     font-size:16px;
   }
 }
+
+.hero h1,
+.section-heading h2,
+.social h2{
+  font-family:'Bebas Neue', sans-serif;
+  letter-spacing:1.5px;
+}
