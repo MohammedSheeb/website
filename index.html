@@ -152,8 +152,8 @@
   <script>
     const userId = "1481454957512101950";
 
-    async function loadDiscord(){
-      try{
+    async function loadDiscord() {
+      try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
         const data = await res.json();
 
@@ -176,14 +176,14 @@
           status === "online" ? "Online" :
           status === "idle" ? "Idle" :
           status === "dnd" ? "Do Not Disturb" : "Offline";
-      } catch(e){
+      } catch (e) {
         console.error("Failed to load Discord data");
       }
     }
 
     const header = document.getElementById("siteHeader");
     window.addEventListener("scroll", () => {
-      if(window.scrollY > 8){
+      if (window.scrollY > 8) {
         header.classList.add("scrolled");
       } else {
         header.classList.remove("scrolled");
@@ -209,14 +209,25 @@
       });
     });
 
-    document.querySelectorAll('.icons a').forEach(link => {
-      link.addEventListener('click', function () {
-        this.blur();
+    const socialLinks = document.querySelectorAll(".icons a");
+
+    socialLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        setTimeout(() => link.blur(), 0);
       });
+
+      link.addEventListener("mouseup", () => link.blur());
+      link.addEventListener("touchend", () => link.blur());
     });
 
-    window.addEventListener('pageshow', () => {
-      document.querySelectorAll('.icons a').forEach(link => link.blur());
+    window.addEventListener("pageshow", () => {
+      socialLinks.forEach(link => link.blur());
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        socialLinks.forEach(link => link.blur());
+      }
     });
 
     loadDiscord();
