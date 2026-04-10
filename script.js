@@ -16,12 +16,6 @@ async function loadDiscord() {
     document.getElementById("displayName").innerText = name;
     document.getElementById("tag").innerText = user.username;
     document.getElementById("dot").className = "status-dot " + status;
-    document.getElementById("statusMiniDot").className = "mini-dot " + status;
-
-    document.getElementById("statusText").innerText =
-      status === "online" ? "Online" :
-      status === "idle" ? "Idle" :
-      status === "dnd" ? "Do Not Disturb" : "Offline";
   } catch (e) {
     console.error("Failed to load Discord data");
   }
