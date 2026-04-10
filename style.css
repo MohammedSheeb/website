@@ -521,20 +521,22 @@ header.scrolled{
   margin-top:10px;
   display:flex;
   gap:10px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
+  align-items:center;
 }
 
 .chip{
   display:flex;
   align-items:center;
   gap:8px;
-  padding:8px 14px;
-  border-radius:14px;
+  padding:6px 10px;
+  border-radius:10px;
   background:var(--chip);
   border:1px solid var(--border);
   color:#e3e3e3;
-  min-height:44px;
-  font-size:14px;
+  font-size:12px;
+  min-height:auto;
+  white-space:nowrap;
 }
 
 .social{
