@@ -64,7 +64,6 @@
         I enjoy working on personal projects, improving my skills, and connecting with others online.
       </p>
 
-
       <div class="game-title">
         <img src="pubgm-logo.png" alt="PUBG MOBILE Logo" class="game-logo">
         <span>PUBG MOBILE</span>
@@ -101,6 +100,7 @@
         <div class="profile">
           <div class="avatar">
             <img id="avatar" src="" alt="Discord avatar">
+            <img src="discord-frame.png" alt="" class="avatar-frame">
             <div id="dot" class="status-dot offline"></div>
           </div>
 
@@ -230,23 +230,23 @@
     setInterval(loadDiscord, 30000);
   </script>
   
-<script>
-  document.addEventListener("contextmenu", function(e) {
-    if (e.target.tagName === "IMG" && !e.target.closest(".logo")) {
-      e.preventDefault();
-    }
-  });
-
-  document.querySelectorAll("img").forEach(img => {
-    if (img.closest(".logo")) return;
-
-    img.addEventListener("dragstart", e => e.preventDefault());
-    img.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
-    img.addEventListener("mousedown", e => {
-      if (e.button === 2) e.preventDefault();
+  <script>
+    document.addEventListener("contextmenu", function(e) {
+      if (e.target.tagName === "IMG" && !e.target.closest(".logo")) {
+        e.preventDefault();
+      }
     });
-  });
-</script>
+
+    document.querySelectorAll("img").forEach(img => {
+      if (img.closest(".logo")) return;
+
+      img.addEventListener("dragstart", e => e.preventDefault());
+      img.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
+      img.addEventListener("mousedown", e => {
+        if (e.button === 2) e.preventDefault();
+      });
+    });
+  </script>
 
 </body>
 </html>
