@@ -475,10 +475,10 @@ header.scrolled{
 /* 🔥 الإطار (مهم جداً) */
 .avatar-frame{
   position:absolute;
-  top:-11px;
+  top:-12px;
   left:-8px;
-  width:calc(100% + 14px);
-  height:calc(100% + 22px);
+  width:calc(100% + 16px);
+  height:calc(100% + 24px);
   object-fit:contain;
   pointer-events:none;
   z-index:2;
