@@ -206,18 +206,18 @@ header.scrolled{
   content:"";
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at center, rgba(229,9,20,0.22), transparent 70%);
+  background:radial-gradient(circle at center, rgba(229,9,20,0.25), transparent 70%);
   opacity:0;
-  transition:opacity 0.28s ease;
+  transition:opacity 0.3s ease;
 }
 
 .menu-toggle:hover{
-  transform:translateY(-2px) scale(1.05);
+  transform:translateY(-2px) scale(1.06);
   border-color:#e50914;
   background:rgba(255,255,255,0.06);
   box-shadow:
     0 14px 30px rgba(0,0,0,0.35),
-    0 0 24px rgba(229,9,20,0.22);
+    0 0 30px rgba(229,9,20,0.25);
 }
 
 .menu-toggle:hover::before{
@@ -225,58 +225,40 @@ header.scrolled{
 }
 
 .menu-toggle:active{
-  transform:scale(0.92);
-  box-shadow:
-    inset 0 4px 12px rgba(0,0,0,0.45),
-    0 0 12px rgba(229,9,20,0.18);
+  transform:scale(0.9);
 }
 
+/* الخطوط */
 .menu-toggle span{
   position:absolute;
   left:50%;
-  width:20px;
+  width:22px; /* نفس الحجم للجميع 🔥 */
   height:2.5px;
   background:#fff;
   border-radius:999px;
   transform:translateX(-50%);
   transition:
-    top 0.3s cubic-bezier(.68,-0.2,.27,1.2),
-    transform 0.3s cubic-bezier(.68,-0.2,.27,1.2),
+    top 0.35s cubic-bezier(.68,-0.3,.27,1.3),
+    transform 0.35s cubic-bezier(.68,-0.3,.27,1.3),
     opacity 0.2s ease,
-    width 0.25s ease,
     box-shadow 0.25s ease;
   z-index:1;
 }
 
-.menu-toggle span:nth-child(1){
-  top:14px;
-}
+/* توزيع الخطوط */
+.menu-toggle span:nth-child(1){ top:14px; }
+.menu-toggle span:nth-child(2){ top:21px; }
+.menu-toggle span:nth-child(3){ top:28px; }
 
-.menu-toggle span:nth-child(2){
-  top:21px;
-  width:18px;
-}
-
-.menu-toggle span:nth-child(3){
-  top:28px;
-}
-
+/* Glow عند hover */
 .menu-toggle:hover span{
-  box-shadow:0 0 8px rgba(255,255,255,0.18);
+  box-shadow:0 0 10px rgba(255,255,255,0.25);
 }
 
-.menu-toggle:hover span:nth-child(1){
-  width:22px;
-}
-
-.menu-toggle:hover span:nth-child(3){
-  width:22px;
-}
-
+/* 🔥 التحول إلى X */
 .menu-toggle.active span:nth-child(1){
   top:21px;
-  width:22px;
-  transform:translateX(-50%) rotate(45deg);
+  transform:translateX(-50%) rotate(45deg) scale(1.1);
 }
 
 .menu-toggle.active span:nth-child(2){
@@ -286,15 +268,15 @@ header.scrolled{
 
 .menu-toggle.active span:nth-child(3){
   top:21px;
-  width:22px;
-  transform:translateX(-50%) rotate(-45deg);
+  transform:translateX(-50%) rotate(-45deg) scale(1.1);
 }
 
+/* Glow عند الفتح */
 .menu-toggle.active{
-  border-color:rgba(229,9,20,0.75);
+  border-color:#e50914;
   box-shadow:
-    0 0 20px rgba(229,9,20,0.18),
-    0 12px 26px rgba(0,0,0,0.3);
+    0 0 20px rgba(229,9,20,0.3),
+    0 12px 26px rgba(0,0,0,0.35);
 }
 
 .reveal{
