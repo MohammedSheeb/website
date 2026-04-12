@@ -365,9 +365,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* =========================
-   INIT
-========================= */
+const netflixTrack = document.getElementById("netflixTrack");
+const netflixPrev = document.getElementById("netflixPrev");
+const netflixNext = document.getElementById("netflixNext");
+
+if (netflixTrack && netflixPrev && netflixNext) {
+  const cards = Array.from(netflixTrack.querySelectorAll(".netflix-card"));
+  let currentIndex = 0;
+
+  function updateNetflixSlider() {
+    cards.forEach((card, index) => {
+      card.classList.toggle("is-active", index === currentIndex);
+    });
+
+    const activeCard = cards[currentIndex];
+    const trackWrap = netflixTrack.parentElement;
+
+    if (!activeCard || !trackWrap) return;
+
+    const wrapWidth = trackWrap.offsetWidth;
+    const cardLeft = activeCard.offsetLeft;
+    const cardWidth = activeCard.offsetWidth;
+
+    const targetX = cardLeft - (wrapWidth / 2) + (cardWidth / 2);
+    netflixTrack.style.transform = `translateX(${-targetX}px)`;
+  }
+
+  netflixPrev.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateNetflixSlider();
+  });
+
+  netflixNext.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateNetflixSlider();
+  });
+
+  window.addEventListener("resize", updateNetflixSlider);
+
+  cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      currentIndex = index;
+      updateNetflixSlider();
+    });
+  });
+
+  window.addEventListener("load", updateNetflixSlider);
+  setTimeout(updateNetflixSlider, 150);
+}
 
 loadDiscord();
 connectLanyard();
