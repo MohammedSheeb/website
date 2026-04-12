@@ -498,6 +498,7 @@ header.scrolled{
   height:85px;
   position:relative;
   flex-shrink:0;
+  transform:translateY(-6px);
 }
 
 .avatar #avatar{
