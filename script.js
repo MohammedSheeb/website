@@ -2,6 +2,13 @@ const userId = "1481454957512101950";
 
 let activityInterval;
 
+function formatTime(seconds) {
+  const safe = Math.max(0, seconds);
+  const minutes = Math.floor(safe / 60);
+  const secs = safe % 60;
+  return `${minutes}:${secs.toString().padStart(2, "0")}`;
+}
+
 async function loadDiscord() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
@@ -9,12 +16,24 @@ async function loadDiscord() {
 
     const user = data.data.discord_user;
     const status = data.data.discord_status;
-    const activities = data.data.activities;
+    const activities = data.data.activities || [];
+    const spotify = data.data.spotify;
+    const listeningToSpotify = data.data.listening_to_spotify;
 
     const isAnimated = user.avatar && user.avatar.startsWith("a_");
     const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${isAnimated ? "gif" : "png"}`;
-
     document.getElementById("avatar").src = avatarUrl;
+
+    const frameEl = document.getElementById("avatarFrame");
+    if (frameEl) {
+      const decoration = user.avatar_decoration_data;
+      if (decoration && decoration.asset) {
+        frameEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${decoration.asset}.png`;
+        frameEl.style.display = "block";
+      } else {
+        frameEl.style.display = "none";
+      }
+    }
 
     const name = user.global_name ? user.global_name : user.username;
     document.getElementById("displayName").innerText = name;
@@ -24,54 +43,124 @@ async function loadDiscord() {
     const customEl = document.getElementById("customStatus");
     const activityCard = document.getElementById("activityCard");
     const activityName = document.getElementById("activityName");
-    const activityDesc = document.getElementById("activityDesc");
+    const activityArtist = document.getElementById("activityArtist");
+    const activityCover = document.getElementById("activityCover");
+    const progressBar = document.getElementById("progressBar");
+    const timeCurrent = document.getElementById("timeCurrent");
+    const timeTotal = document.getElementById("timeTotal");
 
-    let custom = activities.find(a => a.type === 4);
+    const custom = activities.find(a => a.type === 4);
     customEl.innerText = custom ? (custom.state || "") : "";
 
-    let activity =
-      activities.find(a => a.type === 2) ||
-      activities.find(a => a.type === 0) ||
-      activities.find(a => a.type === 1);
-
     clearInterval(activityInterval);
+
+    if (listeningToSpotify && spotify) {
+      activityCard.style.display = "flex";
+      activityName.innerText = spotify.song || "Spotify";
+      activityArtist.innerText = spotify.artist || "";
+      activityCover.src = spotify.album_art_url || "";
+      activityCover.style.display = "block";
+
+      const start = spotify.timestamps?.start;
+      const end = spotify.timestamps?.end;
+
+      if (start && end) {
+        const updateSpotifyProgress = () => {
+          const now = Date.now();
+          const totalSeconds = Math.floor((end - start) / 1000);
+          const currentSeconds = Math.floor((now - start) / 1000);
+          const percent = Math.min(100, Math.max(0, (currentSeconds / totalSeconds) * 100));
+
+          progressBar.style.width = `${percent}%`;
+          timeCurrent.innerText = formatTime(currentSeconds);
+          timeTotal.innerText = formatTime(totalSeconds);
+        };
+
+        updateSpotifyProgress();
+        activityInterval = setInterval(updateSpotifyProgress, 1000);
+      } else {
+        progressBar.style.width = "0%";
+        timeCurrent.innerText = "0:00";
+        timeTotal.innerText = "0:00";
+      }
+
+      return;
+    }
+
+    const activity =
+      activities.find(a => a.type === 0) ||
+      activities.find(a => a.type === 1) ||
+      activities.find(a => a.type === 3) ||
+      activities.find(a => a.type === 5);
 
     if (activity) {
       activityCard.style.display = "flex";
       activityName.innerText = activity.name || "Activity";
+      activityArtist.innerText = activity.details || activity.state || "";
 
-      if (activity.timestamps && activity.timestamps.start) {
+      const largeImage = activity.assets?.large_image;
+      if (largeImage) {
+        if (largeImage.startsWith("mp:external/")) {
+          activityCover.src = `https://media.discordapp.net/${largeImage.slice(3)}`;
+        } else {
+          activityCover.src = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${largeImage}.png`;
+        }
+        activityCover.style.display = "block";
+      } else {
+        activityCover.style.display = "none";
+        activityCover.removeAttribute("src");
+      }
+
+      if (activity.timestamps && activity.timestamps.start && activity.timestamps.end) {
+        const start = activity.timestamps.start;
+        const end = activity.timestamps.end;
+
+        const updateTimedActivity = () => {
+          const now = Date.now();
+          const totalSeconds = Math.floor((end - start) / 1000);
+          const currentSeconds = Math.floor((now - start) / 1000);
+          const percent = Math.min(100, Math.max(0, (currentSeconds / totalSeconds) * 100));
+
+          progressBar.style.width = `${percent}%`;
+          timeCurrent.innerText = formatTime(currentSeconds);
+          timeTotal.innerText = formatTime(totalSeconds);
+        };
+
+        updateTimedActivity();
+        activityInterval = setInterval(updateTimedActivity, 1000);
+      } else if (activity.timestamps && activity.timestamps.start) {
         const start = activity.timestamps.start;
 
-        function updateTime() {
+        const updateElapsedActivity = () => {
           const now = Date.now();
-          const diff = Math.floor((now - start) / 1000);
+          const currentSeconds = Math.floor((now - start) / 1000);
 
-          const minutes = Math.floor(diff / 60);
-          const seconds = diff % 60;
+          progressBar.style.width = "100%";
+          timeCurrent.innerText = formatTime(currentSeconds);
+          timeTotal.innerText = "Live";
+        };
 
-          activityDesc.innerText =
-            `${minutes}:${seconds.toString().padStart(2, "0")} elapsed`;
-        }
-
-        updateTime();
-        activityInterval = setInterval(updateTime, 1000);
-      } else if (activity.details || activity.state) {
-        activityDesc.innerText =
-          (activity.details || "") +
-          (activity.state ? " • " + activity.state : "");
+        updateElapsedActivity();
+        activityInterval = setInterval(updateElapsedActivity, 1000);
       } else {
-        activityDesc.innerText = "Active now";
+        progressBar.style.width = "0%";
+        timeCurrent.innerText = "";
+        timeTotal.innerText = "";
       }
 
     } else {
       activityCard.style.display = "flex";
       activityName.innerText = "Just Chilling";
-      activityDesc.innerText = "No current activity";
+      activityArtist.innerText = "No current activity";
+      activityCover.style.display = "none";
+      activityCover.removeAttribute("src");
+      progressBar.style.width = "0%";
+      timeCurrent.innerText = "";
+      timeTotal.innerText = "";
     }
 
   } catch (e) {
-    console.error("Failed to load Discord data");
+    console.error("Failed to load Discord data", e);
   }
 }
 
