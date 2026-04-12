@@ -1078,4 +1078,6 @@ footer p{
   -webkit-text-fill-color: #ffffff;
 
   text-shadow: none;
-}
+
+  position: relative;
+  top: 1px;
