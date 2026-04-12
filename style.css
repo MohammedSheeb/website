@@ -538,7 +538,7 @@ header.scrolled{
 .offline{background:var(--offline);}
 
 .display-name{
-  font-size:32px;
+  font-size:35px;
   font-weight:900;
   line-height:1.1;
   word-break:break-word;
