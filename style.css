@@ -464,21 +464,22 @@ header.scrolled{
   backdrop-filter:blur(15px);
   -webkit-backdrop-filter:blur(15px);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+  transform-origin:center;
 }
 
 .discord-card:hover{
-  transform:translateY(-4px) scale(1.01);
-  border-color:rgba(255,255,255,0.1);
+  transform:scale(1.03);
+  border-color:rgba(255,255,255,0.12);
   box-shadow:
-    0 24px 48px rgba(0,0,0,0.52),
-    0 0 24px rgba(229,9,20,0.08);
+    0 26px 52px rgba(0,0,0,0.50),
+    0 0 24px rgba(229,9,20,0.10);
 }
 
 .discord-card:active{
-  transform:scale(1.01);
+  transform:scale(1.06);
 }
 
 .profile{
