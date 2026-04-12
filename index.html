@@ -120,20 +120,31 @@
 
         <div class="section-line"></div>
 
-        <div class="netflix-grid">
-          <a href="https://www.netflix.com/title/81435684" target="_blank" class="netflix-link">
-            <img src="netflix1.jpg" alt="Netflix Pick 1" class="netflix-poster">
-          </a>
+        <div class="netflix-slider">
+  <button class="netflix-nav prev" id="netflixPrev" aria-label="Previous">
+    <i class="fas fa-chevron-left"></i>
+  </button>
 
-          <a href="#" target="_blank" class="netflix-link">
-            <img src="netflix2.jpg" alt="Netflix Pick 2" class="netflix-poster">
-          </a>
+  <div class="netflix-track-wrap">
+    <div class="netflix-track" id="netflixTrack">
+      <a href="https://www.netflix.com/title/81435684" target="_blank" class="netflix-card is-active">
+        <img src="netflix1.jpg" alt="Netflix Pick 1" class="netflix-poster">
+      </a>
 
-          <a href="#" target="_blank" class="netflix-link">
-            <img src="netflix3.jpg" alt="Netflix Pick 3" class="netflix-poster">
-          </a>
-        </div>
-      </div>
+      <a href="#" target="_blank" class="netflix-card">
+        <img src="netflix2.jpg" alt="Netflix Pick 2" class="netflix-poster">
+      </a>
+
+      <a href="#" target="_blank" class="netflix-card">
+        <img src="netflix3.jpg" alt="Netflix Pick 3" class="netflix-poster">
+      </a>
+    </div>
+  </div>
+
+  <button class="netflix-nav next" id="netflixNext" aria-label="Next">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
     </section>
 
     <div class="discord-title reveal delay-4">
