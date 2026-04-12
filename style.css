@@ -485,6 +485,13 @@ header.scrolled{
   gap:16px;
 }
 
+.profile > div{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transform:translateY(10px);
+}
+
 .avatar{
   width:85px;
   height:85px;
@@ -549,12 +556,11 @@ header.scrolled{
 }
 
 .chips .chip{
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-
+  background:transparent;
+  border:none;
+  padding:0;
+  box-shadow:none;
+  backdrop-filter:none;
   color:#9ca3af;
   font-size:14px;
   font-weight:500;
@@ -1159,6 +1165,10 @@ footer::before{
 
   .profile{
     gap:12px;
+  }
+
+  .profile > div{
+    transform:translateY(8px);
   }
 
   .avatar{
