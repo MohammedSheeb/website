@@ -1066,3 +1066,24 @@ footer p{
     max-width:1000px;
   }
 }
+
+@font-face{
+  font-family: 'Headliner';
+  src: url('HeadlinerNo.45 DEMO.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.game-title span{
+  font-family: 'Headliner', sans-serif;
+  font-size: 26px;
+  letter-spacing: 2px;
+
+  background: linear-gradient(180deg, #ffffff, #cfcfcf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.6),
+    0 0 14px rgba(229,9,20,0.2);
+}
