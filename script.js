@@ -57,6 +57,9 @@ async function loadDiscord() {
     document.getElementById("dot").className = "status-dot " + status;
 
     const customEl = document.getElementById("customStatus");
+    const customEmojiEl = document.getElementById("customStatusEmoji");
+    const customTextEl = document.getElementById("customStatusText");
+
     const activityCard = document.getElementById("activityCard");
     const activityName = document.getElementById("activityName");
     const activityArtist = document.getElementById("activityArtist");
@@ -69,7 +72,31 @@ async function loadDiscord() {
     const activityIconFallback = document.getElementById("activityIconFallback");
 
     const custom = activities.find(a => a.type === 4);
-    customEl.innerText = custom ? (custom.state || "") : "";
+
+    if (custom) {
+      customTextEl.innerText = custom.state || "";
+      customEmojiEl.innerHTML = "";
+
+      if (custom.emoji) {
+        if (!custom.emoji.id && custom.emoji.name) {
+          customEmojiEl.textContent = custom.emoji.name;
+        } else if (custom.emoji.id) {
+          const emojiExt = custom.emoji.animated ? "gif" : "png";
+          const emojiUrl = `https://cdn.discordapp.com/emojis/${custom.emoji.id}.${emojiExt}?size=64&quality=lossless`;
+          customEmojiEl.innerHTML = `<img src="${emojiUrl}" alt="">`;
+        }
+      }
+
+      if (!custom.state && !custom.emoji) {
+        customEl.style.display = "none";
+      } else {
+        customEl.style.display = "flex";
+      }
+    } else {
+      customEl.style.display = "none";
+      customEmojiEl.innerHTML = "";
+      customTextEl.innerText = "";
+    }
 
     clearInterval(activityInterval);
 
