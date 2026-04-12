@@ -24,12 +24,31 @@ async function loadDiscord() {
     const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${isAnimated ? "gif" : "png"}`;
     document.getElementById("avatar").src = avatarUrl;
 
+    // 🔥 avatar decoration (GIF or PNG auto)
     const frameEl = document.getElementById("avatarFrame");
+
     if (frameEl) {
       const decoration = user.avatar_decoration_data;
+
       if (decoration && decoration.asset) {
-        frameEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${decoration.asset}.png`;
-        frameEl.style.display = "block";
+        const asset = decoration.asset;
+
+        const gifUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.gif`;
+        const pngUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png`;
+
+        const testImg = new Image();
+
+        testImg.onload = () => {
+          frameEl.src = gifUrl;
+          frameEl.style.display = "block";
+        };
+
+        testImg.onerror = () => {
+          frameEl.src = pngUrl;
+          frameEl.style.display = "block";
+        };
+
+        testImg.src = gifUrl;
       } else {
         frameEl.style.display = "none";
       }
@@ -54,6 +73,7 @@ async function loadDiscord() {
 
     clearInterval(activityInterval);
 
+    // 🎵 Spotify
     if (listeningToSpotify && spotify) {
       activityCard.style.display = "flex";
       activityName.innerText = spotify.song || "Spotify";
@@ -87,6 +107,7 @@ async function loadDiscord() {
       return;
     }
 
+    // 🎮 Other activities
     const activity =
       activities.find(a => a.type === 0) ||
       activities.find(a => a.type === 1) ||
