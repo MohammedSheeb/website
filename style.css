@@ -1389,3 +1389,37 @@ footer p{
     font-size:24px;
   }
 }
+
+.custom-status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:14px;
+  color:#e1dede;
+  margin-bottom:14px;
+  opacity:0.96;
+  line-height:1.6;
+  text-align:center;
+}
+
+.custom-status-emoji{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  font-size:22px;
+  flex-shrink:0;
+}
+
+.custom-status-emoji img{
+  width:24px;
+  height:24px;
+  object-fit:contain;
+  display:block;
+}
+
+.custom-status-text{
+  display:block;
+}
