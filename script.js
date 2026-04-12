@@ -1,5 +1,7 @@
 const userId = "1481454957512101950";
 
+let activityInterval;
+
 async function loadDiscord() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
@@ -19,21 +21,24 @@ async function loadDiscord() {
     document.getElementById("tag").innerText = user.username;
     document.getElementById("dot").className = "status-dot " + status;
 
-    // custom status
+    const customEl = document.getElementById("customStatus");
+    const activityCard = document.getElementById("activityCard");
+    const activityName = document.getElementById("activityName");
+    const activityDesc = document.getElementById("activityDesc");
+
     let custom = activities.find(a => a.type === 4);
+    customEl.innerText = custom ? (custom.state || "") : "";
 
-    if (custom) {
-      document.getElementById("customStatus").innerText = custom.state || "";
-    } else {
-      document.getElementById("customStatus").innerText = "";
-    }
+    let activity =
+      activities.find(a => a.type === 2) ||
+      activities.find(a => a.type === 0) ||
+      activities.find(a => a.type === 1);
 
-    // activity + time
-    let activity = activities.find(a => a.type === 0);
+    clearInterval(activityInterval);
 
     if (activity) {
-      document.getElementById("activityCard").style.display = "flex";
-      document.getElementById("activityName").innerText = activity.name || "Activity";
+      activityCard.style.display = "flex";
+      activityName.innerText = activity.name || "Activity";
 
       if (activity.timestamps && activity.timestamps.start) {
         const start = activity.timestamps.start;
@@ -45,20 +50,24 @@ async function loadDiscord() {
           const minutes = Math.floor(diff / 60);
           const seconds = diff % 60;
 
-          document.getElementById("activityDesc").innerText =
-            `${minutes}:${seconds.toString().padStart(2, '0')} elapsed`;
+          activityDesc.innerText =
+            `${minutes}:${seconds.toString().padStart(2, "0")} elapsed`;
         }
 
         updateTime();
-        setInterval(updateTime, 1000);
+        activityInterval = setInterval(updateTime, 1000);
+      } else if (activity.details || activity.state) {
+        activityDesc.innerText =
+          (activity.details || "") +
+          (activity.state ? " • " + activity.state : "");
       } else {
-        document.getElementById("activityDesc").innerText = "Active now";
+        activityDesc.innerText = "Active now";
       }
 
     } else {
-      document.getElementById("activityCard").style.display = "flex";
-      document.getElementById("activityName").innerText = "Just Chilling";
-      document.getElementById("activityDesc").innerText = "No current activity";
+      activityCard.style.display = "flex";
+      activityName.innerText = "Just Chilling";
+      activityDesc.innerText = "No current activity";
     }
 
   } catch (e) {
@@ -68,11 +77,7 @@ async function loadDiscord() {
 
 const header = document.getElementById("siteHeader");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 8) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  header.classList.toggle("scrolled", window.scrollY > 8);
 });
 
 const menuToggle = document.getElementById("menuToggle");
