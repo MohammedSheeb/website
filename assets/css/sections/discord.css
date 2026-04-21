@@ -1,0 +1,28 @@
+.discord-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:760px;
+  margin:22px auto 10px;
+  font-weight:700;
+  padding:0 4px;
+  font-size:20px;
+  color:#fff;
+  text-shadow:0 3px 14px rgba(0,0,0,0.45);
+}
+
+.discord-logo{
+  height:14px;
+  width:auto;
+  display:block;
+}
+
+.discord-title i{
+  color:#5865f2;
+}
+
+.discord-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
