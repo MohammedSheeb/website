@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'PUBG';
+  src: url('../fonts/HeadlineNo45.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import url("./abstracts/variables.css");
 @import url("./abstracts/fonts.css");
 @import url("./abstracts/animations.css");
