@@ -2,9 +2,9 @@
 @import url("./abstracts/fonts.css");
 @import url("./abstracts/animations.css");
 
-@import url("./base/reset.css");
-@import url("./base/global.css");
-@import url("./base/layout.css");
+@import url("./basec/reset.css");
+@import url("./basec/global.css");
+@import url("./basec/layout.css");
 
 @import url("./components/header.css");
 @import url("./components/navigation.css");
