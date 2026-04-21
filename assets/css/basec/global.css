@@ -1,0 +1,47 @@
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  color:var(--text);
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  background:#000;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:#000 url("../images/backgrounds/bg-vertical.jpg") center/cover no-repeat;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:rgba(0,0,0,0.48);
+  pointer-events:none;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  -webkit-user-drag:none;
+  user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:pan-y;
+}
+
+@media (orientation: landscape), (min-width:768px){
+  body::before{
+    background:#000 url("../images/backgrounds/bg-horizontal.jpg") center/cover no-repeat;
+  }
+}
