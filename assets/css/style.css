@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Headliner';
+  src: url('../../fonts/HeadlinerNo45.ttf') format('truetype');
+}
 
 @import url("./abstracts/variables.css");
 @import url("./abstracts/fonts.css");
