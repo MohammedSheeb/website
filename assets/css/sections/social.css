@@ -1,0 +1,17 @@
+.social{
+  text-align:center;
+  margin-bottom:50px;
+  position:relative;
+  z-index:1;
+}
+
+.social h2{
+  font-size:22px;
+  margin-bottom:15px;
+  line-height:1.2;
+  text-shadow:0 3px 14px rgba(0,0,0,0.45);
+}
+
+.social h2 span{
+  color:var(--accent);
+}
