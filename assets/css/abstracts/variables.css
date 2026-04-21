@@ -1,0 +1,30 @@
+:root{
+  --bg:#000;
+  --card:#111;
+  --border:#222;
+  --text:#fff;
+  --soft:#aaa;
+  --accent:#e50914;
+  --chip:#1a1a1a;
+
+  --online:#43b581;
+  --idle:#faa61a;
+  --dnd:#f04747;
+  --offline:#747f8d;
+
+  --container-width:1400px;
+  --container-wide:1600px;
+
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:26px;
+  --radius-pill:999px;
+
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.4);
+  --shadow-card:0 18px 40px rgba(0,0,0,0.42);
+  --shadow-card-strong:0 20px 45px rgba(0,0,0,0.42);
+
+  --transition-fast:0.25s ease;
+  --transition-normal:0.3s ease;
+}
