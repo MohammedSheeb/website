@@ -10,6 +10,7 @@
   flex-direction:column;
   justify-content:flex-start;
   transform:translateY(2px);
+  min-width:0;
 }
 
 .avatar{
