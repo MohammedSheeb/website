@@ -12,19 +12,19 @@
   --dnd:#f04747;
   --offline:#747f8d;
 
-  --container-width:1400px;
-  --container-wide:1600px;
+  --container-width:1320px;
+  --container-wide:1500px;
 
-  --radius-sm:10px;
-  --radius-md:16px;
+  --radius-sm:12px;
+  --radius-md:18px;
   --radius-lg:24px;
-  --radius-xl:26px;
+  --radius-xl:28px;
   --radius-pill:999px;
 
-  --shadow-soft:0 10px 30px rgba(0,0,0,0.4);
-  --shadow-card:0 18px 40px rgba(0,0,0,0.42);
-  --shadow-card-strong:0 20px 45px rgba(0,0,0,0.42);
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.35);
+  --shadow-card:0 18px 44px rgba(0,0,0,0.42);
+  --shadow-card-strong:0 24px 60px rgba(0,0,0,0.48);
 
   --transition-fast:0.25s ease;
-  --transition-normal:0.3s ease;
+  --transition-normal:0.35s ease;
 }
