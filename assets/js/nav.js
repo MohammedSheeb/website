@@ -17,7 +17,7 @@ if (menuToggle && siteNav) {
     menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
   });
 
-  siteNav.querySelectorAll("a").forEach(link => {
+  siteNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       siteNav.classList.remove("open");
       menuToggle.classList.remove("active");
