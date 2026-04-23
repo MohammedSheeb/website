@@ -13,8 +13,8 @@
   <meta property="og:description" content="Official personal website of Mohammed Sheeb" />
   <meta property="og:url" content="https://mohammedsheeb.online/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=20" />
-  <meta property="og:image:secure_url" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=20" />
+  <meta property="og:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=25" />
+  <meta property="og:image:secure_url" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=25" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="256" />
   <meta property="og:image:height" content="256" />
@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Mohammed Sheeb" />
   <meta name="twitter:description" content="Official personal website of Mohammed Sheeb" />
-  <meta name="twitter:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=20" />
+  <meta name="twitter:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=25" />
 
   <link rel="icon" type="image/svg+xml" href="assets/images/logos/Logo.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/logo.png" />
@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6TC2WJ9QJ"></script>
@@ -102,13 +102,15 @@
           I enjoy working on personal projects, improving my skills, and connecting with others online.
         </p>
 
+        <div class="section-line"></div>
+
         <div class="game-title">
           <img
             src="assets/images/logos/pubgm-logo.png"
             alt="PUBG MOBILE Logo"
             class="game-logo"
-            width="200"
-            height="40"
+            width="600"
+            height="120"
           />
           <span>PUBG MOBILE</span>
         </div>
@@ -165,20 +167,22 @@
         aria-label="Open Discord profile"
       >
         <section class="discord-card reveal delay-4">
+          <div class="discord-card-bg"></div>
+
           <div class="profile">
-            <div class="avatar">
-              <img id="avatar" src="" alt="Discord avatar" />
-              <img id="avatarFrame" class="avatar-frame" src="" alt="Avatar Frame" style="display:none;" />
-              <div id="dot" class="status-dot offline"></div>
+            <div class="avatar-shell">
+              <div class="avatar">
+                <img id="avatar" src="" alt="Discord avatar" />
+                <img id="avatarFrame" class="avatar-frame" src="" alt="" style="display:none;" />
+                <div id="dot" class="status-dot offline"></div>
+              </div>
             </div>
 
-            <div>
+            <div class="profile-meta">
               <div id="displayName" class="display-name">Loading...</div>
-
-              <div class="chips">
-                <div class="chip">
-                  <span id="tag">@username</span>
-                </div>
+              <div class="username-row">
+                <span class="username-label">Username</span>
+                <span id="tag" class="username-value">@username</span>
               </div>
             </div>
           </div>
@@ -186,8 +190,10 @@
           <div class="discord-divider"></div>
 
           <div id="customStatus" class="custom-status">
-            <span id="customStatusEmoji" class="custom-status-emoji"></span>
-            <span id="customStatusText" class="custom-status-text"></span>
+            <div class="status-badge">
+              <span id="customStatusEmoji" class="custom-status-emoji"></span>
+              <span id="customStatusText" class="custom-status-text"></span>
+            </div>
           </div>
 
           <div id="activityCard" class="activity-card">
@@ -200,10 +206,11 @@
               <img id="activityCover" class="activity-cover" src="" alt="Activity Cover" style="display:none;" />
 
               <div id="activityIconFallback" class="activity-icon-fallback">
-                <i class="fas fa-moon" aria-hidden="true"></i>
+                <i class="fas fa-gamepad" aria-hidden="true"></i>
               </div>
 
               <div class="activity-text">
+                <div class="activity-label">Activity</div>
                 <div id="activityName" class="activity-name">Just Chilling</div>
                 <div id="activityArtist" class="activity-artist">No current activity</div>
               </div>
@@ -241,7 +248,7 @@
         </div>
       </section>
 
-      <footer>
+      <footer class="site-footer">
         <p>© <span id="year"></span> Mohammed Sheeb. All rights reserved.</p>
       </footer>
     </div>
