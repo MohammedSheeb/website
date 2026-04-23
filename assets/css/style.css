@@ -487,7 +487,11 @@ header.scrolled{
   right:3px;
   border:3px solid #111;
   z-index:3;
-  box-shadow:0 0 10px rgba(0,0,0,.35);
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
 .online{ background:var(--online); }
@@ -938,12 +942,11 @@ header.scrolled{
     height:70px;
   }
 
-  .status-dot{
-    width:16px;
-    height:16px;
-    right:2px;
-    bottom:2px;
-  }
+  .status-dot img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
 
   .display-name{
     font-size:clamp(1.45rem, 7vw, 1.8rem);
