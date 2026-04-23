@@ -1,13 +1,13 @@
 .pubgm-btn{
   display:inline-block;
-  padding:10px 22px;
+  padding:11px 24px;
   border-radius:var(--radius-pill);
   font-size:14px;
-  font-weight:600;
+  font-weight:700;
   color:#fff;
   background:linear-gradient(135deg,#e50914,#ff2a36);
   text-decoration:none;
-  box-shadow:0 8px 20px rgba(229,9,20,0.3);
+  box-shadow:0 10px 24px rgba(229,9,20,0.28);
   transition:
     transform var(--transition-normal),
     box-shadow var(--transition-normal),
@@ -15,12 +15,12 @@
 }
 
 .pubgm-btn:hover{
-  transform:translateY(-2px) scale(1.05);
+  transform:translateY(-2px) scale(1.04);
   box-shadow:
-    0 10px 25px rgba(229,9,20,0.4),
-    0 0 18px rgba(229,9,20,0.25);
+    0 12px 28px rgba(229,9,20,0.38),
+    0 0 18px rgba(229,9,20,0.20);
 }
 
 .pubgm-btn:active{
-  transform:scale(0.95);
+  transform:scale(0.97);
 }
