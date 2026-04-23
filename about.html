@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Mohammed Sheeb</title>
 
-  <meta name="description" content="About Mohammed Sheeb" />
+  <meta name="description" content="Learn more about Mohammed Sheeb" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mohammedsheeb.online/about.html" />
 
@@ -13,12 +13,16 @@
   <meta property="og:description" content="Learn more about Mohammed Sheeb" />
   <meta property="og:url" content="https://mohammedsheeb.online/about.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=30" />
+  <meta property="og:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=40" />
+  <meta property="og:image:secure_url" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=40" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="256" />
+  <meta property="og:image:height" content="256" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="About | Mohammed Sheeb" />
   <meta name="twitter:description" content="Learn more about Mohammed Sheeb" />
-  <meta name="twitter:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=30" />
+  <meta name="twitter:image" content="https://mohammedsheeb.online/assets/images/logos/logo.png?v=40" />
 
   <link rel="icon" type="image/svg+xml" href="assets/images/logos/Logo.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/logo.png" />
@@ -34,34 +38,14 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <style>
-    .page-hero{
-      min-height: 48vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .subpage-hero{
       text-align:center;
-      padding:110px 20px 50px;
+      padding:64px 20px 28px;
       position:relative;
       z-index:1;
     }
 
-    .page-hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(229,9,20,0.18), transparent 30%),
-        linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-      pointer-events:none;
-    }
-
-    .page-hero-inner{
-      position:relative;
-      z-index:1;
-      width:min(100%, 900px);
-    }
-
-    .page-kicker{
+    .subpage-kicker{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -70,57 +54,58 @@
       border-radius:999px;
       background:rgba(255,255,255,0.04);
       color:#d8d8d8;
-      font-size:14px;
-      font-weight:700;
-      letter-spacing:0.8px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.8px;
       text-transform:uppercase;
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
       margin-bottom:18px;
     }
 
-    .page-kicker i{
+    .subpage-kicker i{
       color:var(--accent);
+      font-size:13px;
     }
 
-    .page-title{
-      font-size:clamp(2.4rem, 8vw, 4.6rem);
-      line-height:1.02;
+    .subpage-title{
+      font-size:clamp(2.2rem, 8vw, 4rem);
+      line-height:1.04;
       font-weight:900;
       letter-spacing:-0.04em;
       text-shadow:0 3px 20px rgba(0,0,0,0.45);
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
 
-    .page-title span{
+    .subpage-title span{
       color:var(--accent);
     }
 
-    .page-desc{
-      width:min(100%, 720px);
+    .subpage-text{
+      width:min(100%, 760px);
       margin:0 auto;
-      color:#d7d7d7;
-      font-size:clamp(1rem, 3.7vw, 1.2rem);
-      line-height:1.75;
+      color:#d8d8d8;
+      font-size:clamp(1rem, 3.7vw, 1.15rem);
+      line-height:1.8;
       font-weight:600;
+      text-shadow:0 2px 10px rgba(0,0,0,0.35);
     }
 
-    .about-grid{
-      width:min(100%, 1120px);
+    .about-layout{
+      max-width:980px;
       margin:0 auto;
       display:grid;
-      grid-template-columns:1.1fr 0.9fr;
-      gap:24px;
-      align-items:stretch;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
     }
 
-    .page-card{
+    .about-box{
       position:relative;
-      border-radius:28px;
+      border-radius:26px;
       padding:28px;
       border:1px solid rgba(255,255,255,0.08);
       background:
-        linear-gradient(135deg, rgba(12,12,16,0.78), rgba(8,8,12,0.66));
+        linear-gradient(135deg, rgba(10,10,14,0.78), rgba(8,8,12,0.68));
       box-shadow:
         0 20px 50px rgba(0,0,0,0.42),
         inset 0 1px 0 rgba(255,255,255,0.03);
@@ -129,52 +114,67 @@
       overflow:hidden;
     }
 
-    .page-card::before{
+    .about-box::before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at top right, rgba(229,9,20,0.10), transparent 26%),
+        radial-gradient(circle at top right, rgba(229,9,20,0.10), transparent 24%),
         radial-gradient(circle at bottom left, rgba(255,255,255,0.03), transparent 20%);
       pointer-events:none;
     }
 
-    .card-head{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:18px;
-      font-size:22px;
-      font-weight:800;
-      color:#fff;
+    .about-box > *{
       position:relative;
       z-index:1;
     }
 
-    .card-head i{
+    .about-box-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:22px;
+      font-weight:800;
+      color:#fff;
+      margin-bottom:18px;
+      text-shadow:0 3px 14px rgba(0,0,0,0.45);
+    }
+
+    .about-box-title i{
       color:var(--accent);
       font-size:18px;
     }
 
-    .card-text{
+    .about-box p{
       color:#dddddd;
-      font-size:17px;
+      font-size:16px;
       line-height:1.9;
       font-weight:600;
-      position:relative;
-      z-index:1;
+      margin-bottom:16px;
+      text-shadow:0 2px 10px rgba(0,0,0,0.35);
     }
 
-    .info-list{
+    .about-mini-line{
+      width:100%;
+      height:1px;
+      margin:18px 0;
+      background:linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.16),
+        transparent
+      );
+      opacity:.9;
+    }
+
+    .about-list{
       display:grid;
       gap:12px;
-      position:relative;
-      z-index:1;
     }
 
-    .info-item{
+    .about-item{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       gap:12px;
       padding:14px 16px;
       border-radius:18px;
@@ -182,28 +182,53 @@
       border:1px solid rgba(255,255,255,0.06);
     }
 
-    .info-item i{
-      width:20px;
-      text-align:center;
+    .about-item i{
       color:var(--accent);
       font-size:15px;
+      width:18px;
+      margin-top:3px;
       flex-shrink:0;
     }
 
-    .info-item span{
-      color:#e5e5e5;
-      font-size:15px;
+    .about-item span{
+      color:#e7e7e7;
+      font-size:14px;
       font-weight:700;
-      line-height:1.5;
+      line-height:1.7;
+    }
+
+    .about-quote{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      margin-top:18px;
+    }
+
+    .about-quote p{
+      margin:0;
+      color:#f2f2f2;
+      font-size:22px;
+      line-height:1.55;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    .about-quote span{
+      display:block;
+      margin-top:14px;
+      color:#aaaaaa;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:1px;
+      text-transform:uppercase;
     }
 
     .about-actions{
       display:flex;
       flex-wrap:wrap;
       gap:12px;
-      margin-top:24px;
-      position:relative;
-      z-index:1;
+      margin-top:22px;
     }
 
     .about-btn{
@@ -211,7 +236,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-width:160px;
+      min-width:170px;
       padding:13px 18px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.08);
@@ -237,16 +262,222 @@
       box-shadow:0 12px 24px rgba(0,0,0,0.22);
     }
 
-    .quote-card{
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height:100%;
+    @media (max-width: 900px){
+      .about-layout{
+        grid-template-columns:1fr;
+      }
     }
 
-    .quote-box{
-      position:relative;
-      z-index:1;
-      padding:20px;
-      border-radius:22px;
-      background:rgba
+    @media (max-width: 768px){
+      .subpage-hero{
+        padding:52px 18px 24px;
+      }
+
+      .about-box{
+        padding:22px;
+      }
+
+      .about-box-title{
+        font-size:20px;
+      }
+
+      .about-box p{
+        font-size:15px;
+      }
+
+      .about-quote p{
+        font-size:19px;
+      }
+    }
+
+    @media (max-width: 480px){
+      .subpage-kicker{
+        font-size:12px;
+        padding:9px 14px;
+      }
+
+      .about-box{
+        padding:18px;
+        border-radius:22px;
+      }
+
+      .about-actions{
+        flex-direction:column;
+      }
+
+      .about-btn{
+        width:100%;
+      }
+
+      .about-item span{
+        font-size:13px;
+      }
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6TC2WJ9QJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-B6TC2WJ9QJ");
+  </script>
+</head>
+<body>
+  <header id="siteHeader">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="https://mohammedsheeb.online/" aria-label="Mohammed Sheeb Home">
+          <img
+            src="assets/images/logos/logo.png"
+            alt="Mohammed Sheeb Logo"
+            class="logo-img"
+            width="288"
+            height="288"
+          />
+        </a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="siteNav" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="siteNav" aria-label="Primary Navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="#social">Social Media</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="subpage-hero reveal delay-1">
+      <div class="subpage-kicker">
+        <i class="fas fa-user"></i>
+        Personal Page
+      </div>
+
+      <h1 class="subpage-title">About <span>Me</span></h1>
+
+      <p class="subpage-text">
+        Learn more about my interests, personality, and the things that inspire the way I build my personal digital space.
+      </p>
+    </section>
+
+    <div class="container">
+      <section class="about-layout reveal delay-2">
+        <div class="about-box">
+          <div class="about-box-title">
+            <i class="fas fa-circle-info"></i>
+            <span>Who I Am</span>
+          </div>
+
+          <p>
+            I’m passionate about technology, gaming, and building digital experiences that feel personal, clean, and stylish.
+            I enjoy working on my own ideas, improving my skills, and creating a strong online identity that reflects who I am.
+          </p>
+
+          <p>
+            I like details, dark elegant design, and websites that feel smooth and premium while still staying simple and clear.
+          </p>
+
+          <div class="about-mini-line"></div>
+
+          <div class="about-box-title">
+            <i class="fas fa-gamepad"></i>
+            <span>Gaming Side</span>
+          </div>
+
+          <p>
+            Gaming is one of the things I enjoy most, especially PUBG MOBILE.
+            What I like most is the challenge, the teamwork, and the unforgettable moments that come from real matches and real wins.
+          </p>
+
+          <div class="about-actions">
+            <a href="index.html" class="about-btn primary">
+              <i class="fas fa-house"></i>
+              Back Home
+            </a>
+
+            <a href="#social" class="about-btn">
+              <i class="fas fa-share-nodes"></i>
+              Social Media
+            </a>
+          </div>
+        </div>
+
+        <div class="about-box">
+          <div class="about-box-title">
+            <i class="fas fa-star"></i>
+            <span>Quick Info</span>
+          </div>
+
+          <div class="about-list">
+            <div class="about-item">
+              <i class="fas fa-laptop-code"></i>
+              <span>I enjoy personal websites, design polishing, and visual improvements.</span>
+            </div>
+
+            <div class="about-item">
+              <i class="fas fa-headset"></i>
+              <span>I like online interaction, gaming communities, and building my own digital style.</span>
+            </div>
+
+            <div class="about-item">
+              <i class="fas fa-shield-heart"></i>
+              <span>I focus on improving my work and making my website feel better over time.</span>
+            </div>
+
+            <div class="about-item">
+              <i class="fas fa-moon"></i>
+              <span>I prefer elegant dark themes, smooth motion, and a premium modern look.</span>
+            </div>
+          </div>
+
+          <div class="about-quote">
+            <p>
+              A personal website should feel like identity, not just code.
+            </p>
+            <span>Mohammed Sheeb</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider reveal delay-3"></div>
+
+      <section class="social reveal delay-4" id="social">
+        <h2>Social <span>Media</span></h2>
+
+        <div class="icons-wrap">
+          <div class="icons">
+            <a href="mailto:mohammedsheeb1@gmail.com" aria-label="Email Mohammed Sheeb"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/ppbMFFxSFF" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://youtube.com/@MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="https://www.tiktok.com/@mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="https://x.com/MohammedSheeb_" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>© <span id="year"></span> Mohammed Sheeb. All rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script defer src="assets/js/nav.js"></script>
+  <script defer src="assets/js/social.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+</body>
+</html>
