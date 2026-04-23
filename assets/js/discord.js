@@ -1,4 +1,5 @@
 const userId = "1481454957512101950";
+let heartbeatTimer = null;
 
 function applyAvatarDecoration(user) {
   const frameEl = document.getElementById("avatarFrame");
@@ -15,17 +16,17 @@ function applyAvatarDecoration(user) {
 
     testImg.onload = () => {
       frameEl.src = gifUrl;
-      frameEl.style.display = "block";
+      frameEl.hidden = false;
     };
 
     testImg.onerror = () => {
       frameEl.src = pngUrl;
-      frameEl.style.display = "block";
+      frameEl.hidden = false;
     };
 
     testImg.src = gifUrl;
   } else {
-    frameEl.style.display = "none";
+    frameEl.hidden = true;
     frameEl.removeAttribute("src");
   }
 }
@@ -65,6 +66,21 @@ function applyCustomStatus(activities) {
   }
 }
 
+function setDiscordStatus(status) {
+  const dotEl = document.getElementById("dot");
+  if (!dotEl) return;
+
+  const labelMap = {
+    online: "Online",
+    idle: "Idle",
+    dnd: "Do Not Disturb",
+    offline: "Invisible"
+  };
+
+  dotEl.dataset.status = status;
+  dotEl.setAttribute("aria-label", labelMap[status] || "Invisible");
+}
+
 function renderDiscordPresence(payload) {
   if (!payload || !payload.discord_user) return;
 
@@ -77,9 +93,8 @@ function renderDiscordPresence(payload) {
   const avatarEl = document.getElementById("avatar");
   const displayNameEl = document.getElementById("displayName");
   const tagEl = document.getElementById("tag");
-  const dotEl = document.getElementById("dot");
 
-  if (!avatarEl || !displayNameEl || !tagEl || !dotEl) return;
+  if (!avatarEl || !displayNameEl || !tagEl) return;
 
   const avatarUrl = user.avatar
     ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith("a_") ? "gif" : "png"}?size=256`
@@ -88,8 +103,8 @@ function renderDiscordPresence(payload) {
   avatarEl.src = avatarUrl;
   displayNameEl.innerText = user.global_name || user.username || "Unknown";
   tagEl.innerText = `@${user.username || "username"}`;
-  dotEl.className = `status-dot ${status}`;
 
+  setDiscordStatus(status);
   applyAvatarDecoration(user);
   applyCustomStatus(activities);
 
@@ -131,20 +146,25 @@ async function loadDiscord() {
 function connectLanyard() {
   const socket = new WebSocket("wss://api.lanyard.rest/socket");
 
-  socket.addEventListener("open", () => {
-    socket.send(JSON.stringify({
-      op: 2,
-      d: {
-        subscribe_to_id: userId
-      }
-    }));
-  });
-
   socket.addEventListener("message", (event) => {
     const payload = JSON.parse(event.data);
 
     if (payload.op === 1) {
-      socket.send(JSON.stringify({ op: 3 }));
+      clearInterval(heartbeatTimer);
+
+      heartbeatTimer = setInterval(() => {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(JSON.stringify({ op: 3 }));
+        }
+      }, payload.d.heartbeat_interval);
+
+      socket.send(JSON.stringify({
+        op: 2,
+        d: {
+          subscribe_to_id: userId
+        }
+      }));
+
       return;
     }
 
@@ -154,6 +174,7 @@ function connectLanyard() {
   });
 
   socket.addEventListener("close", () => {
+    clearInterval(heartbeatTimer);
     setTimeout(connectLanyard, 3000);
   });
 
