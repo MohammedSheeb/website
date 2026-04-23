@@ -24,11 +24,11 @@ header.scrolled{
 }
 
 .header-inner{
-  min-height:92px;
+  min-height:var(--header-h);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
   position:relative;
   width:100%;
 }
@@ -39,7 +39,7 @@ header.scrolled{
 }
 
 .logo-img{
-  height:72px;
+  height:var(--logo-h);
   width:auto;
   display:block;
   pointer-events:auto;
