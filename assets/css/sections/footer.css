@@ -1,32 +1,23 @@
-footer{
+.site-footer{
   text-align:center;
-  padding:22px 16px 28px;
-  color:#8f8f8f;
-  margin-top:40px;
+  padding:18px 16px 24px;
+  color:#9a9a9a;
+  margin-top:8px;
   background:transparent;
   border-top:1px solid rgba(255,255,255,0.06);
-  font-size:15px;
+  font-size:14px;
   line-height:1.6;
   position:relative;
 }
 
-footer::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:90px;
-  height:2px;
-  background:rgba(229,9,20,0.9);
-  box-shadow:0 0 10px rgba(229,9,20,0.35);
-  border-radius:var(--radius-pill);
+.site-footer::before{
+  display:none;
 }
 
-footer p{
-  font-size:13px;
-  font-weight:400;
-  letter-spacing:0.5px;
-  color:#aaa;
-  opacity:0.82;
+.site-footer p{
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.35px;
+  color:#9e9e9e;
+  opacity:0.9;
 }
