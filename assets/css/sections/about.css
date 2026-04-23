@@ -3,7 +3,7 @@
   align-items:center;
   gap:10px;
   color:#f0f0f0;
-  font-size:clamp(1.4rem, 5vw, 2rem);
+  font-size:var(--title-md);
   font-weight:800;
   margin-bottom:14px;
   text-shadow:0 3px 14px rgba(0,0,0,0.45);
@@ -11,12 +11,12 @@
 
 .about-subtitle i{
   color:#fff;
-  font-size:22px;
+  font-size:20px;
 }
 
 .about-text{
   color:#e0e0e0;
-  font-size:clamp(1rem, 3.7vw, 1.15rem);
+  font-size:var(--text-md);
   font-weight:700;
   line-height:1.72;
   max-width:100%;
@@ -48,8 +48,8 @@
 
 .game-logo{
   width:auto;
-  height:44px;
-  max-width:min(240px, 54vw);
+  height:40px;
+  max-width:min(220px, 54vw);
   object-fit:contain;
   flex-shrink:0;
   display:block;
@@ -58,7 +58,7 @@
 
 .game-title span{
   font-family:'Headliner', sans-serif;
-  font-size:clamp(1.45rem, 5vw, 2rem);
+  font-size:clamp(1.25rem, 1rem + .8vw, 1.7rem);
   letter-spacing:2px;
   color:#ffffff;
   -webkit-text-fill-color:#ffffff;
