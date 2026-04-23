@@ -231,7 +231,7 @@ function renderDiscordPresence(payload) {
 
   avatarEl.src = avatarUrl;
   displayNameEl.innerText = user.global_name || user.username || "Unknown";
-  tagEl.innerText = `@${user.username || "username"}`;
+  tagEl.innerText = user.username || "username";
   dotEl.className = `status-dot ${status}`;
 
   applyAvatarDecoration(user);
