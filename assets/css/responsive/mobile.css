@@ -77,14 +77,13 @@
     padding:22px;
   }
 
-  .avatar-shell{
+.avatar-shell{
   width:94px;
   height:94px;
 }
 
 .avatar{
-  width:78px;
-  height:78px;
+  inset:10px;
 }
 
   .activity-cover,
