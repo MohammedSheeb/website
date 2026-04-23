@@ -8,7 +8,10 @@
   background:linear-gradient(135deg,#e50914,#ff2a36);
   text-decoration:none;
   box-shadow:0 8px 20px rgba(229,9,20,0.3);
-  transition:all var(--transition-normal);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    background var(--transition-normal);
 }
 
 .pubgm-btn:hover{
