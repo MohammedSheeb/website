@@ -7,13 +7,13 @@
   --accent:#e50914;
   --chip:#1a1a1a;
 
-  --online:#43b581;
-  --idle:#faa61a;
-  --dnd:#f04747;
-  --offline:#747f8d;
+  --online:#23a55a;
+  --idle:#f0b232;
+  --dnd:#f23f43;
+  --offline:#80848e;
 
-  --container-width:1320px;
-  --container-wide:1500px;
+  --container-width:1240px;
+  --container-wide:1320px;
 
   --radius-sm:12px;
   --radius-md:18px;
@@ -27,4 +27,12 @@
 
   --transition-fast:0.25s ease;
   --transition-normal:0.35s ease;
+
+  --header-h:78px;
+  --logo-h:clamp(44px, 2.3vw, 56px);
+  --title-lg:clamp(2rem, 1.3rem + 1.4vw, 2.7rem);
+  --title-md:clamp(1.2rem, 1rem + .6vw, 1.65rem);
+  --text-md:clamp(.98rem, .92rem + .18vw, 1.05rem);
+  --social-box:clamp(54px, 3.2vw, 62px);
+  --card-pad:clamp(18px, 1.2vw, 22px);
 }
