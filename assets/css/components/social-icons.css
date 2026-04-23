@@ -7,24 +7,26 @@
 
 .icons{
   display:grid;
-  grid-template-columns:repeat(7, minmax(0, 1fr));
+  grid-template-columns:repeat(7, minmax(var(--social-box), var(--social-box)));
   gap:10px;
-  width:100%;
+  width:fit-content;
+  margin:0 auto;
   align-items:center;
+  justify-content:center;
 }
 
 .icons a{
-  width:100%;
-  aspect-ratio:1 / 1;
+  width:var(--social-box);
+  height:var(--social-box);
   min-width:0;
   display:flex;
   align-items:center;
   justify-content:center;
   background:rgba(17,17,17,0.90);
   border:1px solid rgba(255,255,255,0.08);
-  border-radius:18px;
+  border-radius:16px;
   color:var(--accent);
-  font-size:22px;
+  font-size:18px;
   transition:
     transform 0.28s ease,
     background 0.28s ease,
@@ -51,7 +53,7 @@
 }
 
 .icons a:hover{
-  transform:translateY(-5px) scale(1.04);
+  transform:translateY(-4px) scale(1.04);
   background:linear-gradient(135deg, #e50914, #ff2a36);
   color:#fff;
   border-color:rgba(229,9,20,0.55);
@@ -61,7 +63,7 @@
 }
 
 .icons a:hover i{
-  transform:scale(1.1);
+  transform:scale(1.08);
   color:#fff;
 }
 
