@@ -34,7 +34,6 @@
 
 html{
   scroll-behavior:smooth;
-  overflow-x:hidden;
 }
 
 body{
@@ -97,11 +96,11 @@ img{
   animation:fadeUp .8s ease forwards;
 }
 
-.delay-1{animation-delay:.08s}
-.delay-2{animation-delay:.16s}
-.delay-3{animation-delay:.24s}
-.delay-4{animation-delay:.32s}
-.delay-5{animation-delay:.40s}
+.delay-1{ animation-delay:.08s; }
+.delay-2{ animation-delay:.16s; }
+.delay-3{ animation-delay:.24s; }
+.delay-4{ animation-delay:.32s; }
+.delay-5{ animation-delay:.40s; }
 
 @keyframes fadeUp{
   to{
@@ -232,7 +231,9 @@ header.scrolled{
   margin:0 auto 16px;
   object-fit:cover;
   display:block;
-  box-shadow:0 0 24px rgba(229,9,20,.18), 0 12px 30px rgba(0,0,0,.22);
+  box-shadow:
+    0 0 24px rgba(229,9,20,.18),
+    0 12px 30px rgba(0,0,0,.22);
 }
 
 .hero h1,
@@ -289,7 +290,9 @@ header.scrolled{
   border:1px solid rgba(255,255,255,.09);
   border-radius:24px;
   padding:28px;
-  box-shadow:0 18px 44px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.03);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.03);
   text-align:left;
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
@@ -363,7 +366,9 @@ header.scrolled{
   display:block;
   margin:20px auto 16px;
   border-radius:22px;
-  box-shadow:0 14px 34px rgba(0,0,0,.36), 0 0 18px rgba(229,9,20,.10);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.36),
+    0 0 18px rgba(229,9,20,.10);
 }
 
 .pubgm-btn{
@@ -410,7 +415,9 @@ header.scrolled{
   cursor:pointer;
   background:rgba(8,8,8,.72);
   border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 18px 44px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.03);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.03);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
   transition:.28s ease;
@@ -815,11 +822,6 @@ header.scrolled{
     height:76px;
   }
 
-  .avatar-frame{
-  width:94px;
-  height:94px;
-}
-
   .display-name{
     font-size:clamp(1.55rem, 5vw, 2rem);
   }
@@ -936,11 +938,6 @@ header.scrolled{
     height:70px;
   }
 
-  .avatar-frame{
-  width:94px;
-  height:94px;
-}
-
   .status-dot{
     width:16px;
     height:16px;
@@ -957,7 +954,6 @@ header.scrolled{
   }
 
   .icons{
-    grid-template-columns:repeat(7, minmax(0, 1fr));
     gap:5px;
     max-width:100%;
   }
