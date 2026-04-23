@@ -103,6 +103,7 @@ function renderDiscordPresence(payload) {
   const activity =
     activities.find((a) => a.type === 0) ||
     activities.find((a) => a.type === 1) ||
+    activities.find((a) => a.type === 2) ||
     activities.find((a) => a.type === 3) ||
     activities.find((a) => a.type === 5);
 
