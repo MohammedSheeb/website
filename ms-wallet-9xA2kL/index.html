@@ -65,30 +65,49 @@
     }
 
     .lang-switch{
+      position:relative;
       display:flex;
       align-items:center;
       gap:8px;
       direction:ltr !important;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
+      padding:6px;
       border-radius:999px;
-      padding:5px;
       flex-shrink:0;
       overflow:hidden;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.28),
+        inset 0 -1px 0 rgba(255,255,255,.08),
+        0 12px 35px rgba(0,0,0,.28);
+      backdrop-filter:blur(22px) saturate(180%);
+      -webkit-backdrop-filter:blur(22px) saturate(180%);
+    }
+
+    .lang-switch::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.24), rgba(255,255,255,.04) 45%, rgba(255,255,255,.12));
+      pointer-events:none;
     }
 
     .lang-btn{
+      position:relative;
+      z-index:1;
       border:0;
       border-radius:999px;
-      padding:7px 12px;
+      padding:8px 13px;
       min-width:54px;
       background:transparent;
-      color:#aaa;
+      color:rgba(255,255,255,.58);
       font-size:13px;
       font-weight:800;
       cursor:pointer;
       text-align:center;
-      transition:background .22s ease, color .22s ease, transform .12s ease;
+      transition:background .22s ease, color .22s ease, transform .12s ease, box-shadow .22s ease;
     }
 
     .lang-btn:active{
@@ -96,8 +115,13 @@
     }
 
     .lang-btn.active{
-      background:#fff;
+      background:rgba(255,255,255,.88);
       color:#111;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 6px 18px rgba(0,0,0,.22);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
     }
 
     .wallet-page{
@@ -138,7 +162,8 @@
       font-size:clamp(1.22rem, 5vw, 1.8rem);
       line-height:1.35;
       color:#555;
-      margin-bottom:46px;
+      margin-bottom:24px;
+      min-height:0;
     }
 
     .wallet-info strong{
@@ -160,6 +185,10 @@
       line-height:1.55;
       color:#333;
       margin-bottom:28px;
+      min-height:145px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
     }
 
     .wallet-actions{
@@ -167,7 +196,8 @@
       max-width:420px;
       display:grid;
       gap:14px;
-      margin:18px auto 44px;
+      margin:0 auto 44px;
+      flex-shrink:0;
     }
 
     .wallet-btn{
@@ -175,6 +205,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
+      height:54px;
       min-height:54px;
       border-radius:16px;
       font-size:18px;
@@ -184,6 +215,7 @@
       padding:0 58px;
       direction:ltr !important;
       overflow:hidden;
+      white-space:nowrap;
     }
 
     .wallet-btn svg{
@@ -194,7 +226,7 @@
 
     .btn-icon{
       position:absolute;
-      left:48px;
+      left:34px;
       top:50%;
       transform:translateY(-50%);
       display:flex;
@@ -210,6 +242,7 @@
       display:block;
       text-align:center;
       direction:inherit;
+      white-space:nowrap;
     }
 
     [dir="rtl"] .btn-text{
@@ -237,6 +270,10 @@
       line-height:1.6;
       color:#777;
       margin-bottom:44px;
+      min-height:50px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
     .wallet-footer{
@@ -290,22 +327,32 @@
         font-size:62px;
       }
 
+      .wallet-info{
+        min-height:0;
+        margin-bottom:20px;
+      }
+
+      .wallet-text{
+        min-height:145px;
+      }
+
       .wallet-actions{
         margin-bottom:38px;
       }
 
       .lang-btn{
-        padding:6px 10px;
+        padding:7px 11px;
         min-width:52px;
         font-size:12px;
       }
 
       .btn-icon{
-        left:42px;
+        left:30px;
       }
 
       .wallet-btn{
-        padding:0 54px;
+        padding:0 50px;
+        font-size:17px;
       }
 
       .wallet-footer{
@@ -318,13 +365,13 @@
 <body>
   <header>
     <div class="header-inner">
-      <a href="/" aria-label="Mohammed Sheeb Home">
+      <a href="./" aria-label="Lost Wallet Page">
         <img src="/assets/images/logos/Logo.svg" alt="Mohammed Sheeb Logo" class="logo-img" />
       </a>
 
       <div class="lang-switch" aria-label="Language switcher">
-        <button class="lang-btn" type="button" data-lang="en">EN</button>
         <button class="lang-btn" type="button" data-lang="ar">AR</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
       </div>
     </div>
   </header>
@@ -336,7 +383,7 @@
 
     <div class="wallet-info">
       <span data-i18n="ownerLabel">Owner</span>:
-      <strong>Mohammed Sheeb</strong><br />
+      <strong data-i18n="ownerName">Mohammed Sheeb</strong><br />
       <span data-i18n="phoneLabel">Phone</span>:
       <strong class="phone-number">+970566882041</strong>
     </div>
@@ -390,6 +437,7 @@
       en: {
         title: "Lost Wallet",
         ownerLabel: "Owner",
+        ownerName: "Mohammed Sheeb",
         phoneLabel: "Phone",
         description: "This wallet belongs to Mohammed Sheeb. If you found it, please contact me using the button below. I would really appreciate your help returning it safely.",
         callBtn: "Call Owner",
@@ -400,6 +448,7 @@
       ar: {
         title: "محفظة مفقودة",
         ownerLabel: "المالك",
+        ownerName: "محمد شيب",
         phoneLabel: "رقم الهاتف",
         description: "هذه المحفظة تعود إلى محمد شيب. إذا عثرت عليها، الرجاء التواصل معي من خلال الزر بالأسفل. أقدّر مساعدتك في إعادتها بأمان.",
         callBtn: "اتصل بالمالك",
