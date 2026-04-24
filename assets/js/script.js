@@ -2,17 +2,11 @@ const userId = "1481454957512101950";
 let activityInterval = null;
 
 function updateStatus(status) {
-  const icon = document.getElementById("statusIcon");
-  if (!icon) return;
+  const dot = document.getElementById("dot");
+  if (!dot) return;
 
-  const map = {
-    online: "/assets/images/status/online.svg",
-    idle: "/assets/images/status/idle.svg",
-    dnd: "/assets/images/status/dnd.svg",
-    offline: "/assets/images/status/offline.svg"
-  };
-
-  icon.src = map[status] || map.offline;
+  dot.className = `status-dot ${status || "offline"}`;
+  dot.innerHTML = "";
 }
 
 function formatTime(seconds) {
