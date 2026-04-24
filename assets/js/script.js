@@ -1,4 +1,4 @@
-const userId = "759076162935717901";
+const userId = "1481454957512101950";
 let activityInterval = null;
 
 function updateStatus(status) {
