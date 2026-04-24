@@ -1,9 +1,6 @@
 const userId = "1300318105116872758";
 let activityInterval = null;
 
-/* =========================
-   STATUS ICON (NEW)
-========================= */
 function updateStatus(status) {
   const icon = document.getElementById("statusIcon");
   if (!icon) return;
@@ -18,9 +15,6 @@ function updateStatus(status) {
   icon.src = map[status] || map.offline;
 }
 
-/* =========================
-   TIME FORMAT
-========================= */
 function formatTime(seconds) {
   const safe = Math.max(0, Number.isFinite(seconds) ? seconds : 0);
   const minutes = Math.floor(safe / 60);
@@ -28,9 +22,6 @@ function formatTime(seconds) {
   return `${minutes}:${secs.toString().padStart(2, "0")}`;
 }
 
-/* =========================
-   RESET TIMER
-========================= */
 function resetActivityTimer() {
   if (activityInterval) {
     clearInterval(activityInterval);
@@ -38,20 +29,39 @@ function resetActivityTimer() {
   }
 }
 
-/* =========================
-   HIDE ACTIVITY (IMPORTANT)
-========================= */
 function hideActivity() {
   const activityCard = document.getElementById("activityCard");
-  if (activityCard) {
-    activityCard.style.display = "none";
-  }
+  if (activityCard) activityCard.style.display = "none";
 }
 
-/* =========================
-   SPOTIFY
-========================= */
+function showActivityBase() {
+  const activityCard = document.getElementById("activityCard");
+  const spotifyHeader = document.getElementById("spotifyHeader");
+  const spotifyProgressWrap = document.getElementById("spotifyProgressWrap");
+  const activityCover = document.getElementById("activityCover");
+  const activityIconFallback = document.getElementById("activityIconFallback");
+  const progressBar = document.getElementById("progressBar");
+  const timeCurrent = document.getElementById("timeCurrent");
+  const timeTotal = document.getElementById("timeTotal");
+
+  if (!activityCard) return false;
+
+  activityCard.style.display = "flex";
+
+  if (spotifyHeader) spotifyHeader.style.display = "none";
+  if (spotifyProgressWrap) spotifyProgressWrap.style.display = "none";
+  if (activityCover) activityCover.style.display = "none";
+  if (activityIconFallback) activityIconFallback.style.display = "flex";
+  if (progressBar) progressBar.style.width = "0%";
+  if (timeCurrent) timeCurrent.innerText = "";
+  if (timeTotal) timeTotal.innerText = "";
+
+  return true;
+}
+
 function setSpotifyActivity(spotify) {
+  resetActivityTimer();
+
   const activityCard = document.getElementById("activityCard");
   const activityName = document.getElementById("activityName");
   const activityArtist = document.getElementById("activityArtist");
@@ -61,12 +71,15 @@ function setSpotifyActivity(spotify) {
   const timeTotal = document.getElementById("timeTotal");
   const spotifyHeader = document.getElementById("spotifyHeader");
   const spotifyProgressWrap = document.getElementById("spotifyProgressWrap");
+  const activityIconFallback = document.getElementById("activityIconFallback");
 
-  if (!activityCard) return;
+  if (!activityCard || !activityName || !activityArtist || !activityCover) return;
 
   activityCard.style.display = "flex";
-  spotifyHeader.style.display = "flex";
-  spotifyProgressWrap.style.display = "block";
+
+  if (spotifyHeader) spotifyHeader.style.display = "flex";
+  if (spotifyProgressWrap) spotifyProgressWrap.style.display = "block";
+  if (activityIconFallback) activityIconFallback.style.display = "none";
 
   activityName.innerText = spotify.song || "Spotify";
   activityArtist.innerText = spotify.artist || "";
@@ -76,15 +89,14 @@ function setSpotifyActivity(spotify) {
   const start = spotify.timestamps?.start;
   const end = spotify.timestamps?.end;
 
-  if (start && end) {
+  if (start && end && end > start && progressBar && timeCurrent && timeTotal) {
     const update = () => {
       const now = Date.now();
-      const total = Math.floor((end - start) / 1000);
-      const current = Math.floor((now - start) / 1000);
+      const total = Math.max(1, Math.floor((end - start) / 1000));
+      const current = Math.max(0, Math.floor((now - start) / 1000));
+      const percent = Math.min(100, Math.max(0, (current / total) * 100));
 
-      const percent = Math.min(100, (current / total) * 100);
-      progressBar.style.width = percent + "%";
-
+      progressBar.style.width = `${percent}%`;
       timeCurrent.innerText = formatTime(current);
       timeTotal.innerText = formatTime(total);
     };
@@ -94,9 +106,106 @@ function setSpotifyActivity(spotify) {
   }
 }
 
-/* =========================
-   AVATAR FRAME
-========================= */
+function getActivityImage(activity) {
+  const largeImage = activity.assets?.large_image;
+
+  if (!largeImage) return "";
+
+  if (largeImage.startsWith("mp:external/")) {
+    return `https://media.discordapp.net/${largeImage.slice(3)}`;
+  }
+
+  if (largeImage.startsWith("spotify:")) {
+    return `https://i.scdn.co/image/${largeImage.replace("spotify:", "")}`;
+  }
+
+  if (activity.application_id) {
+    return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${largeImage}.png`;
+  }
+
+  return "";
+}
+
+function getElapsedTime(startTimestamp) {
+  if (!startTimestamp) return "";
+
+  const seconds = Math.floor((Date.now() - startTimestamp) / 1000);
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${secs.toString().padStart(2, "0")}`;
+}
+
+function setGameActivity(activity) {
+  resetActivityTimer();
+
+  const activityName = document.getElementById("activityName");
+  const activityArtist = document.getElementById("activityArtist");
+  const activityCover = document.getElementById("activityCover");
+  const activityIconFallback = document.getElementById("activityIconFallback");
+
+  if (!showActivityBase() || !activityName || !activityArtist || !activityCover) return;
+
+  activityName.innerText = activity.name || "Playing";
+
+  const details = activity.details || "";
+  const state = activity.state || "";
+  const start = activity.timestamps?.start;
+  const elapsed = getElapsedTime(start);
+
+  let text = "";
+
+  if (details && state) {
+    text = `${details} • ${state}`;
+  } else {
+    text = details || state || "Playing";
+  }
+
+  if (elapsed) {
+    text = `${text} • ${elapsed}`;
+  }
+
+  activityArtist.innerText = text;
+
+  const imageUrl = getActivityImage(activity);
+
+  if (imageUrl) {
+    activityCover.src = imageUrl;
+    activityCover.style.display = "block";
+    if (activityIconFallback) activityIconFallback.style.display = "none";
+  } else {
+    activityCover.style.display = "none";
+    activityCover.removeAttribute("src");
+    if (activityIconFallback) {
+      activityIconFallback.innerHTML = '<i class="fas fa-gamepad" aria-hidden="true"></i>';
+      activityIconFallback.style.display = "flex";
+    }
+  }
+
+  if (start) {
+    activityInterval = setInterval(() => {
+      const currentDetails = activity.details || "";
+      const currentState = activity.state || "";
+      const currentElapsed = getElapsedTime(start);
+
+      let currentText = "";
+
+      if (currentDetails && currentState) {
+        currentText = `${currentDetails} • ${currentState}`;
+      } else {
+        currentText = currentDetails || currentState || "Playing";
+      }
+
+      activityArtist.innerText = `${currentText} • ${currentElapsed}`;
+    }, 1000);
+  }
+}
+
 function applyAvatarDecoration(user) {
   const frameEl = document.getElementById("avatarFrame");
   if (!frameEl) return;
@@ -105,44 +214,61 @@ function applyAvatarDecoration(user) {
 
   if (decoration && decoration.asset) {
     const asset = decoration.asset;
-    frameEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png`;
-    frameEl.style.display = "block";
+    const gifUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.gif`;
+    const pngUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png`;
+
+    const testImg = new Image();
+
+    testImg.onload = () => {
+      frameEl.src = gifUrl;
+      frameEl.style.display = "block";
+    };
+
+    testImg.onerror = () => {
+      frameEl.src = pngUrl;
+      frameEl.style.display = "block";
+    };
+
+    testImg.src = gifUrl;
   } else {
     frameEl.style.display = "none";
+    frameEl.removeAttribute("src");
   }
 }
 
-/* =========================
-   CUSTOM STATUS
-========================= */
 function applyCustomStatus(activities) {
   const customEl = document.getElementById("customStatus");
   const emojiEl = document.getElementById("customStatusEmoji");
   const textEl = document.getElementById("customStatusText");
 
-  if (!customEl) return;
+  if (!customEl || !emojiEl || !textEl) return;
 
-  const custom = activities.find(a => a.type === 4);
+  const custom = activities.find((a) => a.type === 4);
 
-  if (custom) {
-    textEl.innerText = custom.state || "";
-    emojiEl.innerHTML = "";
-
-    if (custom.emoji?.name) {
-      emojiEl.textContent = custom.emoji.name;
-    }
-
-    customEl.style.display = "flex";
-  } else {
+  if (!custom) {
     customEl.style.display = "none";
+    emojiEl.innerHTML = "";
+    textEl.innerText = "";
+    return;
   }
+
+  textEl.innerText = custom.state || "";
+  emojiEl.innerHTML = "";
+
+  if (custom.emoji) {
+    if (!custom.emoji.id && custom.emoji.name) {
+      emojiEl.textContent = custom.emoji.name;
+    } else if (custom.emoji.id) {
+      const ext = custom.emoji.animated ? "gif" : "png";
+      emojiEl.innerHTML = `<img src="https://cdn.discordapp.com/emojis/${custom.emoji.id}.${ext}?size=64&quality=lossless" alt="">`;
+    }
+  }
+
+  customEl.style.display = custom.state || custom.emoji ? "flex" : "none";
 }
 
-/* =========================
-   MAIN RENDER
-========================= */
 function renderDiscordPresence(payload) {
-  if (!payload) return;
+  if (!payload || !payload.discord_user) return;
 
   const user = payload.discord_user;
   const status = payload.discord_status || "offline";
@@ -156,39 +282,41 @@ function renderDiscordPresence(payload) {
 
   if (!avatar || !name || !tag) return;
 
-  /* avatar */
+  const avatarExt = user.avatar?.startsWith("a_") ? "gif" : "png";
+
   avatar.src = user.avatar
-    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
+    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExt}?size=256`
     : "https://cdn.discordapp.com/embed/avatars/0.png";
 
-  name.innerText = user.global_name || user.username;
-  tag.innerText = user.username; // بدون @
+  name.innerText = user.global_name || user.username || "Unknown";
+  tag.innerText = user.username || "username";
 
-  /* 🔥 status icon */
   updateStatus(status);
-
   applyAvatarDecoration(user);
   applyCustomStatus(activities);
-
   resetActivityTimer();
 
-  /* 🔥 فقط Spotify يظهر */
   if (listening && spotify) {
     setSpotifyActivity(spotify);
-  } else {
-    hideActivity(); // 🔥 يخفي البوكس بالكامل
+    return;
   }
+
+  const gameActivity = activities.find((activity) => activity.type === 0);
+
+  if (gameActivity) {
+    setGameActivity(gameActivity);
+    return;
+  }
+
+  hideActivity();
 }
 
-/* =========================
-   LOAD DATA
-========================= */
 async function loadDiscord() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
     const data = await res.json();
 
-    if (data.success) {
+    if (data?.success && data.data) {
       renderDiscordPresence(data.data);
     }
   } catch {
@@ -196,16 +324,15 @@ async function loadDiscord() {
   }
 }
 
-/* =========================
-   LIVE SOCKET
-========================= */
 function connectLanyard() {
   const socket = new WebSocket("wss://api.lanyard.rest/socket");
 
   socket.onopen = () => {
     socket.send(JSON.stringify({
       op: 2,
-      d: { subscribe_to_id: userId }
+      d: {
+        subscribe_to_id: userId
+      }
     }));
   };
 
@@ -217,7 +344,7 @@ function connectLanyard() {
       return;
     }
 
-    if (payload.t === "INIT_STATE" || payload.t === "PRESENCE_UPDATE") {
+    if ((payload.t === "INIT_STATE" || payload.t === "PRESENCE_UPDATE") && payload.d) {
       renderDiscordPresence(payload.d);
     }
   };
@@ -226,9 +353,72 @@ function connectLanyard() {
   socket.onerror = () => socket.close();
 }
 
-/* =========================
-   INIT
-========================= */
+const header = document.getElementById("siteHeader");
+
+window.addEventListener("scroll", () => {
+  if (header) {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+});
+
+const menuToggle = document.getElementById("menuToggle");
+const siteNav = document.getElementById("siteNav");
+
+if (menuToggle && siteNav) {
+  menuToggle.addEventListener("click", () => {
+    siteNav.classList.toggle("open");
+    menuToggle.classList.toggle("active");
+
+    const expanded = siteNav.classList.contains("open");
+    menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      siteNav.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+const socialLinks = document.querySelectorAll(".icons a");
+
+socialLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    setTimeout(() => link.blur(), 0);
+  });
+
+  link.addEventListener("mouseup", () => link.blur());
+  link.addEventListener("touchend", () => link.blur());
+});
+
+window.addEventListener("pageshow", () => {
+  socialLinks.forEach((link) => link.blur());
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    socialLinks.forEach((link) => link.blur());
+  }
+});
+
+document.addEventListener("contextmenu", (e) => {
+  if (e.target.tagName === "IMG" && !e.target.closest(".logo")) {
+    e.preventDefault();
+  }
+});
+
+document.querySelectorAll("img").forEach((img) => {
+  if (img.closest(".logo")) return;
+
+  img.addEventListener("dragstart", (e) => e.preventDefault());
+
+  img.addEventListener("mousedown", (e) => {
+    if (e.button === 2) e.preventDefault();
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   loadDiscord();
   connectLanyard();
