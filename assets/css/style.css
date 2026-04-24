@@ -614,22 +614,6 @@ header.scrolled{
   display:block;
 }
 
-.activity-icon-fallback{
-  width:64px;
-  height:64px;
-  border-radius:14px;
-  background:rgba(255,255,255,.05);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-}
-
-.activity-icon-fallback i{
-  font-size:30px;
-  color:#f1f1f1;
-}
-
 .activity-text{
   min-width:0;
   flex:1;
