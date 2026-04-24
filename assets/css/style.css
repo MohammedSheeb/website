@@ -10,6 +10,9 @@
   --offline:#80848e;
 
   --container-width:1240px;
+
+  --avatar-size:clamp(78px, 7vw, 102px);
+  --frame-size:calc(var(--avatar-size) * 1.15);
 }
 
 @font-face{
@@ -81,7 +84,7 @@ img{
   width:100%;
   max-width:var(--container-width);
   margin:0 auto;
-  padding:0 20px;
+  padding:0 clamp(14px, 3vw, 24px);
 }
 
 .reveal{
@@ -110,7 +113,7 @@ header{
   background:rgba(0,0,0,.62);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(229,9,20,.22);
   transition:.3s ease;
 }
 
@@ -221,11 +224,14 @@ header.scrolled{
   width:108px;
   height:108px;
   border-radius:50%;
-  border:2px solid rgba(255,255,255,.16);
+  border:2px solid rgba(229,9,20,.85);
   margin:0 auto 16px;
   object-fit:cover;
   display:block;
-  box-shadow:0 14px 32px rgba(0,0,0,.38);
+  box-shadow:
+    0 0 0 4px rgba(229,9,20,.08),
+    0 0 22px rgba(229,9,20,.42),
+    0 14px 32px rgba(0,0,0,.38);
 }
 
 .hero h1,
@@ -252,9 +258,10 @@ header.scrolled{
 .hero-line{
   width:112px;
   height:3px;
-  background:rgba(255,255,255,.24);
+  background:linear-gradient(to right, transparent, var(--accent), transparent);
   margin:18px auto 0;
   border-radius:999px;
+  box-shadow:0 0 16px rgba(229,9,20,.75);
 }
 
 .section-heading{
@@ -274,6 +281,7 @@ header.scrolled{
 
 .about-card,
 .discord-card{
+  width:100%;
   max-width:760px;
   background:rgba(8,8,8,.76);
   border:1px solid rgba(255,255,255,.09);
@@ -287,7 +295,7 @@ header.scrolled{
 
 .about-card{
   margin:22px auto 0;
-  padding:28px;
+  padding:clamp(18px, 3vw, 28px);
   text-align:left;
 }
 
@@ -314,11 +322,18 @@ header.scrolled{
   margin-bottom:18px;
 }
 
+.section-line,
+.discord-divider,
+.section-divider{
+  border-radius:999px;
+  background:linear-gradient(to right, transparent, rgba(229,9,20,.95), transparent);
+  box-shadow:0 0 18px rgba(229,9,20,.7);
+}
+
 .section-line{
   width:100%;
   height:1px;
   margin:20px 0;
-  background:linear-gradient(to right, transparent, rgba(255,255,255,.16), transparent);
 }
 
 .game-title{
@@ -348,14 +363,16 @@ header.scrolled{
 .pubgm-image-box{
   margin-top:22px;
   text-align:center;
+  overflow:hidden;
 }
 
 .pubgm-image{
   width:100%;
-  max-width:720px;
+  max-width:100%;
   display:block;
   margin:20px auto 16px;
   border-radius:22px;
+  object-fit:cover;
   box-shadow:0 14px 34px rgba(0,0,0,.38);
 }
 
@@ -395,7 +412,7 @@ header.scrolled{
 
 .discord-card{
   margin:10px auto 0;
-  padding:24px;
+  padding:clamp(18px, 3vw, 24px);
   position:relative;
   overflow:hidden;
   cursor:pointer;
@@ -409,7 +426,7 @@ header.scrolled{
 .profile{
   display:flex;
   align-items:center;
-  gap:19px;
+  gap:clamp(14px, 2.5vw, 20px);
   padding-top:2px;
 }
 
@@ -422,8 +439,8 @@ header.scrolled{
 }
 
 .avatar{
-  width:92px;
-  height:92px;
+  width:var(--avatar-size);
+  height:var(--avatar-size);
   position:relative;
   flex-shrink:0;
   border-radius:50%;
@@ -446,8 +463,8 @@ header.scrolled{
   position:absolute !important;
   top:50% !important;
   left:50% !important;
-  width:96px !important;
-  height:96px !important;
+  width:var(--frame-size) !important;
+  height:var(--frame-size) !important;
   min-width:0 !important;
   min-height:0 !important;
   max-width:none !important;
@@ -460,11 +477,15 @@ header.scrolled{
 }
 
 .status-dot{
-  width:22px;
-  height:22px;
+  width:calc(var(--avatar-size) * .23);
+  height:calc(var(--avatar-size) * .23);
+  min-width:18px;
+  min-height:18px;
+  max-width:23px;
+  max-height:23px;
   border-radius:50%;
   position:absolute;
-  right:1px;
+  right:0;
   bottom:2px;
   border:4px solid #111;
   z-index:4;
@@ -481,7 +502,7 @@ header.scrolled{
 }
 
 .display-name{
-  font-size:clamp(1.9rem, 1.2rem + 1.2vw, 2.55rem);
+  font-size:clamp(1.45rem, 4vw, 2.55rem);
   font-weight:800;
   line-height:1;
   word-break:break-word;
@@ -493,7 +514,7 @@ header.scrolled{
 
 .username-value{
   color:#b7bbc7;
-  font-size:clamp(.9rem, .78rem + .28vw, 1rem);
+  font-size:clamp(.85rem, 2vw, 1rem);
   font-weight:650;
   line-height:1.2;
   letter-spacing:.2px;
@@ -503,18 +524,24 @@ header.scrolled{
   width:100%;
   height:1px;
   margin:18px 0;
-  background:linear-gradient(to right, transparent, rgba(255,255,255,.18), transparent);
 }
 
 .custom-status{
+  width:100%;
   display:flex;
   align-items:center;
-  justify-content:flex-start;
+  justify-content:center;
   gap:10px;
-  font-size:14px;
-  color:#e1dede;
-  margin-bottom:14px;
-  min-height:28px;
+  text-align:center;
+  font-size:clamp(13px, 2.5vw, 15px);
+  color:#f1f1f1;
+  margin:0 0 16px;
+  padding:12px 14px;
+  min-height:42px;
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(229,9,20,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .custom-status-emoji{
@@ -537,7 +564,7 @@ header.scrolled{
 .custom-status-text{
   display:block;
   word-break:break-word;
-  font-weight:600;
+  font-weight:700;
 }
 
 .activity-card{
@@ -574,24 +601,25 @@ header.scrolled{
   width:100%;
 }
 
+.activity-cover,
+.activity-icon-fallback{
+  width:clamp(56px, 7vw, 66px);
+  height:clamp(56px, 7vw, 66px);
+  flex-shrink:0;
+}
+
 .activity-cover{
-  width:64px;
-  height:64px;
   border-radius:10px;
   object-fit:cover;
-  flex-shrink:0;
   display:block;
 }
 
 .activity-icon-fallback{
-  width:64px;
-  height:64px;
   border-radius:14px;
   background:rgba(255,255,255,.05);
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-shrink:0;
 }
 
 .activity-icon-fallback i{
@@ -673,11 +701,9 @@ header.scrolled{
 }
 
 .section-divider{
-  width:96px;
+  width:110px;
   height:2px;
-  background:linear-gradient(to right, transparent, rgba(255,255,255,.24), transparent);
   margin:34px auto 26px;
-  border-radius:999px;
 }
 
 .social{
@@ -737,27 +763,25 @@ header.scrolled{
 
 .site-footer{
   text-align:center;
-  padding:18px 16px 24px;
-  color:#9a9a9a;
-  margin-top:8px;
-  border-top:1px solid rgba(255,255,255,.06);
-  font-size:14px;
+  padding:24px 16px 28px;
+  margin-top:18px;
+  color:#fff;
+  background:rgba(0,0,0,.48);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(229,9,20,.28);
+  box-shadow:0 -10px 32px rgba(0,0,0,.36);
 }
 
 .site-footer p{
-  font-size:12px;
-  font-weight:500;
-  letter-spacing:.35px;
-  color:#9e9e9e;
-  opacity:.9;
+  font-size:clamp(13px, 2.5vw, 15px);
+  font-weight:700;
+  letter-spacing:.45px;
+  color:#fff;
+  opacity:1;
 }
 
 @media (max-width:1023px){
-  .container{
-    max-width:100%;
-    padding:0 18px;
-  }
-
   .header-inner{
     min-height:74px;
     gap:12px;
@@ -778,32 +802,7 @@ header.scrolled{
 
   .about-card,
   .discord-card{
-    padding:20px;
     border-radius:22px;
-  }
-
-  .avatar{
-    width:86px;
-    height:86px;
-  }
-
-  .avatar-frame{
-    width:96px !important;
-    height:96px !important;
-  }
-
-  .status-dot{
-    width:21px;
-    height:21px;
-    border-width:4px;
-    right:1px;
-    bottom:1px;
-  }
-
-  .activity-cover,
-  .activity-icon-fallback{
-    width:60px;
-    height:60px;
   }
 
   .icons{
@@ -863,8 +862,8 @@ header.scrolled{
 }
 
 @media (max-width:480px){
-  .container{
-    padding:0 14px;
+  :root{
+    --avatar-size:78px;
   }
 
   .logo-img{
@@ -895,7 +894,6 @@ header.scrolled{
 
   .about-card,
   .discord-card{
-    padding:18px;
     border-radius:24px;
   }
 
@@ -903,22 +901,8 @@ header.scrolled{
     gap:14px;
   }
 
-  .avatar{
-    width:78px;
-    height:78px;
-  }
-
-  .avatar-frame{
-    width:96px !important;
-    height:96px !important;
-  }
-
   .status-dot{
-    width:19px;
-    height:19px;
     border-width:3.5px;
-    right:1px;
-    bottom:1px;
   }
 
   .display-name{
@@ -940,6 +924,6 @@ header.scrolled{
   }
 
   .site-footer{
-    padding:16px 12px 22px;
+    padding:22px 12px 26px;
   }
 }
