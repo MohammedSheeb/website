@@ -1,4 +1,4 @@
-const userId = "1300318105116872758";
+const userId = "855545331071451166";
 let activityInterval = null;
 
 function updateStatus(status) {
@@ -19,6 +19,19 @@ function formatTime(seconds) {
   const safe = Math.max(0, Number.isFinite(seconds) ? seconds : 0);
   const minutes = Math.floor(safe / 60);
   const secs = safe % 60;
+  return `${minutes}:${secs.toString().padStart(2, "0")}`;
+}
+
+function formatTimeLong(seconds) {
+  const safe = Math.max(0, Number.isFinite(seconds) ? seconds : 0);
+  const hours = Math.floor(safe / 3600);
+  const minutes = Math.floor((safe % 3600) / 60);
+  const secs = safe % 60;
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
+
   return `${minutes}:${secs.toString().padStart(2, "0")}`;
 }
 
@@ -51,7 +64,7 @@ function showActivityBase() {
   if (spotifyHeader) spotifyHeader.style.display = "none";
   if (spotifyProgressWrap) spotifyProgressWrap.style.display = "none";
   if (activityCover) activityCover.style.display = "none";
-  if (activityIconFallback) activityIconFallback.style.display = "flex";
+  if (activityIconFallback) activityIconFallback.style.display = "none";
   if (progressBar) progressBar.style.width = "0%";
   if (timeCurrent) timeCurrent.innerText = "";
   if (timeTotal) timeTotal.innerText = "";
@@ -77,7 +90,11 @@ function setSpotifyActivity(spotify) {
 
   activityCard.style.display = "flex";
 
-  if (spotifyHeader) spotifyHeader.style.display = "flex";
+  if (spotifyHeader) {
+    spotifyHeader.style.display = "flex";
+    spotifyHeader.innerHTML = `<span>Listening to Spotify</span><i class="fab fa-spotify" aria-hidden="true"></i>`;
+  }
+
   if (spotifyProgressWrap) spotifyProgressWrap.style.display = "block";
   if (activityIconFallback) activityIconFallback.style.display = "none";
 
@@ -126,51 +143,62 @@ function getActivityImage(activity) {
   return "";
 }
 
-function getElapsedTime(startTimestamp) {
-  if (!startTimestamp) return "";
-
-  const seconds = Math.floor((Date.now() - startTimestamp) / 1000);
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-
-  if (hours > 0) {
-    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  }
-
-  return `${minutes}:${secs.toString().padStart(2, "0")}`;
-}
-
 function setGameActivity(activity) {
   resetActivityTimer();
 
   const activityName = document.getElementById("activityName");
   const activityArtist = document.getElementById("activityArtist");
   const activityCover = document.getElementById("activityCover");
+  const spotifyHeader = document.getElementById("spotifyHeader");
+  const spotifyProgressWrap = document.getElementById("spotifyProgressWrap");
   const activityIconFallback = document.getElementById("activityIconFallback");
 
   if (!showActivityBase() || !activityName || !activityArtist || !activityCover) return;
 
-  activityName.innerText = activity.name || "Playing";
+  if (spotifyHeader) {
+    spotifyHeader.style.display = "flex";
+    spotifyHeader.innerHTML = `<span>Playing</span>`;
+  }
+
+  if (spotifyProgressWrap) {
+    spotifyProgressWrap.style.display = "none";
+  }
+
+  activityName.innerText = activity.name || "Game";
 
   const details = activity.details || "";
   const state = activity.state || "";
   const start = activity.timestamps?.start;
-  const elapsed = getElapsedTime(start);
 
-  let text = "";
+  const updateGameText = () => {
+    let html = "";
 
-  if (details && state) {
-    text = `${details} • ${state}`;
-  } else {
-    text = details || state || "Playing";
+    if (details) {
+      html += `<div>${details}</div>`;
+    }
+
+    if (state) {
+      html += `<div>${state}</div>`;
+    }
+
+    if (start) {
+      const seconds = Math.floor((Date.now() - start) / 1000);
+      html += `
+        <div class="game-time">
+          <i class="fas fa-gamepad" aria-hidden="true"></i>
+          <span>${formatTimeLong(seconds)}</span>
+        </div>
+      `;
+    }
+
+    activityArtist.innerHTML = html || `<div>Playing</div>`;
+  };
+
+  updateGameText();
+
+  if (start) {
+    activityInterval = setInterval(updateGameText, 1000);
   }
-
-  if (elapsed) {
-    text = `${text} • ${elapsed}`;
-  }
-
-  activityArtist.innerText = text;
 
   const imageUrl = getActivityImage(activity);
 
@@ -179,30 +207,13 @@ function setGameActivity(activity) {
     activityCover.style.display = "block";
     if (activityIconFallback) activityIconFallback.style.display = "none";
   } else {
-    activityCover.style.display = "none";
     activityCover.removeAttribute("src");
+    activityCover.style.display = "none";
+
     if (activityIconFallback) {
       activityIconFallback.innerHTML = '<i class="fas fa-gamepad" aria-hidden="true"></i>';
       activityIconFallback.style.display = "flex";
     }
-  }
-
-  if (start) {
-    activityInterval = setInterval(() => {
-      const currentDetails = activity.details || "";
-      const currentState = activity.state || "";
-      const currentElapsed = getElapsedTime(start);
-
-      let currentText = "";
-
-      if (currentDetails && currentState) {
-        currentText = `${currentDetails} • ${currentState}`;
-      } else {
-        currentText = currentDetails || currentState || "Playing";
-      }
-
-      activityArtist.innerText = `${currentText} • ${currentElapsed}`;
-    }, 1000);
   }
 }
 
