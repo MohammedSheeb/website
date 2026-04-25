@@ -513,7 +513,7 @@
     }
 
     function getWalletId() {
-      const sixHours = 6 * 60 * 60 * 1000;
+      const sixHours = 30 * 1000;
       const now = Date.now();
 
       const savedData = JSON.parse(localStorage.getItem("walletSession"));
