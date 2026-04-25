@@ -13,7 +13,11 @@
   <link rel="apple-touch-icon" href="/assets/images/logos/logo.png" />
 
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
       min-height:100vh;
@@ -25,7 +29,10 @@
       touch-action:manipulation;
     }
 
-    a{text-decoration:none;color:inherit;}
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
     header{
       width:100%;
@@ -82,7 +89,8 @@
       position:absolute;
       inset:0;
       border-radius:inherit;
-      background:linear-gradient(135deg, rgba(255,255,255,.24), rgba(255,255,255,.04) 45%, rgba(255,255,255,.12));
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.24), rgba(255,255,255,.04) 45%, rgba(255,255,255,.12));
       pointer-events:none;
     }
 
@@ -102,7 +110,9 @@
       transition:background .22s ease, color .22s ease, transform .12s ease, box-shadow .22s ease;
     }
 
-    .lang-btn:active{transform:scale(.94);}
+    .lang-btn:active{
+      transform:scale(.94);
+    }
 
     .lang-btn.active{
       background:rgba(255,255,255,.88);
@@ -128,7 +138,8 @@
       height:170px;
       border-radius:50%;
       margin-bottom:34px;
-      background:radial-gradient(circle at 35% 30%, #fff, #d9d9df 45%, #a9a9b2 100%);
+      background:
+        radial-gradient(circle at 35% 30%, #fff, #d9d9df 45%, #a9a9b2 100%);
       box-shadow:
         inset 0 0 0 14px rgba(255,255,255,.65),
         0 18px 45px rgba(0,0,0,.14);
@@ -143,7 +154,7 @@
       line-height:1.05;
       font-weight:800;
       letter-spacing:-.04em;
-      margin-bottom:22px;
+      margin-bottom:16px;
       color:#111;
     }
 
@@ -234,11 +245,24 @@
       white-space:nowrap;
     }
 
-    [dir="rtl"] .btn-text{direction:rtl;}
+    [dir="rtl"] .btn-text{
+      direction:rtl;
+    }
 
-    .wallet-btn.call{background:#007aff;color:#fff;}
-    .wallet-btn.whatsapp{background:#25d366;color:#fff;}
-    .wallet-btn.location{background:#fff;color:#007aff;}
+    .wallet-btn.call{
+      background:#007aff;
+      color:#fff;
+    }
+
+    .wallet-btn.whatsapp{
+      background:#25d366;
+      color:#fff;
+    }
+
+    .wallet-btn.location{
+      background:#fff;
+      color:#007aff;
+    }
 
     .wallet-note{
       max-width:620px;
@@ -274,55 +298,66 @@
       unicode-bidi:isolate !important;
     }
 
-    .expired-page{
-      min-height:calc(100vh - 70px);
-      display:none;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 22px;
+    [dir="rtl"] .wallet-page{
+      direction:rtl;
     }
 
-    .expired-card{
-      width:100%;
-      max-width:560px;
-      background:#fff;
-      border-radius:24px;
-      padding:34px 24px;
-      box-shadow:0 18px 45px rgba(0,0,0,.10);
-      border:1px solid rgba(0,0,0,.08);
+    [dir="rtl"] .wallet-title{
+      letter-spacing:0;
     }
-
-    .expired-card h1{
-      font-size:clamp(1.9rem, 7vw, 2.7rem);
-      line-height:1.1;
-      margin-bottom:14px;
-      color:#111;
-    }
-
-    .expired-card p{
-      font-size:clamp(1.05rem, 4vw, 1.25rem);
-      color:#555;
-      line-height:1.6;
-    }
-
-    [dir="rtl"] .wallet-page{direction:rtl;}
-    [dir="rtl"] .wallet-title{letter-spacing:0;}
 
     @media(max-width:480px){
-      header{height:64px;padding:0 16px;}
-      .logo-img{height:38px;}
-      .wallet-page{min-height:calc(100vh - 64px);padding:42px 22px 0;}
-      .wallet-icon{width:150px;height:150px;font-size:62px;}
-      .wallet-info{min-height:0;margin-bottom:34px;}
-      .wallet-text{min-height:110px;}
-      .wallet-actions{margin-bottom:38px;}
-      .lang-btn{padding:7px 11px;min-width:52px;font-size:12px;}
-      .btn-icon{left:30px;}
-      .wallet-btn{padding:0 50px;font-size:17px;}
-      .wallet-footer{padding:26px 18px calc(26px + env(safe-area-inset-bottom));}
-      .expired-page{min-height:calc(100vh - 64px);}
+      header{
+        height:64px;
+        padding:0 16px;
+      }
+
+      .logo-img{
+        height:38px;
+      }
+
+      .wallet-page{
+        min-height:calc(100vh - 64px);
+        padding:42px 22px 0;
+      }
+
+      .wallet-icon{
+        width:150px;
+        height:150px;
+        font-size:62px;
+      }
+
+      .wallet-info{
+  min-height:0;
+  margin-bottom:34px;
+}
+
+      .wallet-text{
+        min-height:110px;
+      }
+
+      .wallet-actions{
+        margin-bottom:38px;
+      }
+
+      .lang-btn{
+        padding:7px 11px;
+        min-width:52px;
+        font-size:12px;
+      }
+
+      .btn-icon{
+        left:30px;
+      }
+
+      .wallet-btn{
+        padding:0 50px;
+        font-size:17px;
+      }
+
+      .wallet-footer{
+        padding:26px 18px calc(26px + env(safe-area-inset-bottom));
+      }
     }
   </style>
 </head>
@@ -341,7 +376,7 @@
     </div>
   </header>
 
-  <main class="wallet-page" id="walletPage">
+  <main class="wallet-page">
     <div class="wallet-icon">💳</div>
 
     <h1 class="wallet-title" data-i18n="title">Lost Wallet</h1>
@@ -397,13 +432,6 @@
     </footer>
   </main>
 
-  <main class="expired-page" id="expiredPage">
-    <div class="expired-card">
-      <h1>Access Session Expired</h1>
-      <p>This access session is no longer valid. Please scan the NFC card again to open a new secure session.</p>
-    </div>
-  </main>
-
   <script>
     const translations = {
       en: {
@@ -430,100 +458,6 @@
       }
     };
 
-    const SESSION_DURATION = 60 * 1000;
-    const BASE_PATH = "/ms-wallet";
-
-    function generateWalletId() {
-      let usedIds = JSON.parse(localStorage.getItem("usedWalletIds") || "[]");
-      let id;
-
-      do {
-        const number = Math.floor(10000000 + Math.random() * 90000000);
-        id = "ms-wallet-" + number;
-      } while (usedIds.includes(id));
-
-      usedIds.push(id);
-
-      if (usedIds.length > 500) {
-        usedIds = usedIds.slice(-500);
-      }
-
-      localStorage.setItem("usedWalletIds", JSON.stringify(usedIds));
-      return id;
-    }
-
-    function createNewSession() {
-      const now = Date.now();
-      const id = generateWalletId();
-
-      const session = {
-        id: id,
-        createdAt: now,
-        expiresAt: now + SESSION_DURATION
-      };
-
-      localStorage.setItem("walletSession", JSON.stringify(session));
-      history.replaceState({}, "", "/" + id);
-
-      return session;
-    }
-
-    function getCurrentPathId() {
-      const path = window.location.pathname.replace("/", "");
-      return /^ms-wallet-\d{8}$/.test(path) ? path : null;
-    }
-
-    function isBasePath() {
-      const path = window.location.pathname.replace(/\/$/, "");
-      return path === BASE_PATH || path === "";
-    }
-
-    function showExpired() {
-      document.getElementById("walletPage").style.display = "none";
-      document.getElementById("expiredPage").style.display = "flex";
-    }
-
-    function showWallet() {
-      document.getElementById("walletPage").style.display = "flex";
-      document.getElementById("expiredPage").style.display = "none";
-    }
-
-    function initSession() {
-      const now = Date.now();
-      const pathId = getCurrentPathId();
-      const savedSession = JSON.parse(localStorage.getItem("walletSession") || "null");
-
-      if (isBasePath()) {
-        const session = createNewSession();
-        showWallet();
-
-        setTimeout(showExpired, session.expiresAt - now);
-        return;
-      }
-
-      if (pathId) {
-        if (
-          savedSession &&
-          savedSession.id === pathId &&
-          savedSession.expiresAt &&
-          now < savedSession.expiresAt
-        ) {
-          showWallet();
-
-          setTimeout(showExpired, savedSession.expiresAt - now);
-          return;
-        }
-
-        showExpired();
-        return;
-      }
-
-      const session = createNewSession();
-      showWallet();
-
-      setTimeout(showExpired, session.expiresAt - now);
-    }
-
     function setLanguage(lang) {
       const selected = translations[lang] ? lang : "en";
 
@@ -547,7 +481,6 @@
       : "en";
 
     setLanguage(deviceLang);
-    initSession();
 
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
