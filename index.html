@@ -38,7 +38,6 @@
     <div class="container header-inner">
       <a href="/" class="brand" aria-label="Mohammed Sheeb Home">
         <img src="/assets/images/logos/logo.png" alt="Mohammed Sheeb Logo" class="logo-img" />
-        <span>Mohammed Sheeb</span>
       </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="siteNav" type="button">
@@ -49,7 +48,7 @@
 
       <nav class="nav" id="siteNav" aria-label="Primary Navigation">
         <a href="/" class="active">Home</a>
-        <a href="#about">About Me</a>
+        <a href="#discord">Discord</a>
       </nav>
     </div>
   </header>
@@ -80,105 +79,85 @@
             Passionate about technology, gaming, and building creative digital experiences.
           </p>
 
-          <a href="#about" class="hero-btn">
-            Learn More About Me
+          <a href="#discord" class="hero-btn">
+            View Discord
             <i class="fas fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
       </div>
     </section>
 
-    <div class="container main-grid">
-      <section class="about-card" id="about">
-        <h2>About <span>Me</span></h2>
+    <section class="discord-section container" id="discord">
+      <h2>Discord</h2>
 
-        <div class="card-content">
-          <div class="card-icon">
-            <i class="fas fa-user" aria-hidden="true"></i>
+      <a
+        href="https://discordapp.com/users/1481454957512101950"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="discord-link"
+        aria-label="Open Discord profile"
+      >
+        <div class="discord-card">
+          <div class="profile">
+            <div class="avatar">
+              <img id="avatar" src="" alt="Discord avatar" />
+              <img id="avatarFrame" class="avatar-frame" src="" alt="" style="display:none;" />
+              <div id="dot" class="status-dot offline"></div>
+            </div>
+
+            <div class="profile-meta">
+              <div id="displayName" class="display-name">Loading...</div>
+              <div id="tag" class="username-value">@username</div>
+              <div id="customStatus" class="custom-status">
+                <span id="customStatusEmoji" class="custom-status-emoji"></span>
+                <span id="customStatusText" class="custom-status-text">Just Chilling</span>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h3>Who I Am?</h3>
-            <p>
-              Passionate about technology, gaming, and building creative digital experiences.
-              I enjoy working on personal projects, improving my skills, and connecting with others online.
-            </p>
+          <div class="discord-divider"></div>
+
+          <div id="activityCard" class="activity-card">
+            <div id="spotifyHeader" class="spotify-header" style="display:none;">
+              <span>Listening to Spotify</span>
+              <i class="fab fa-spotify" aria-hidden="true"></i>
+            </div>
+
+            <div class="activity-main">
+              <img id="activityCover" class="activity-cover" src="" alt="Activity Cover" style="display:none;" />
+
+              <div class="activity-text">
+                <div id="activityName" class="activity-name">Just Chilling</div>
+                <div id="activityArtist" class="activity-artist">No current activity</div>
+              </div>
+            </div>
+
+            <div id="spotifyProgressWrap" class="spotify-progress-wrap" style="display:none;">
+              <div class="progress">
+                <div id="progressBar" class="progress-bar"></div>
+              </div>
+
+              <div class="time">
+                <span id="timeCurrent">0:00</span>
+                <span id="timeTotal">0:00</span>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-
-      <section class="discord-section">
-        <h2>Discord</h2>
-
-        <a
-          href="https://discordapp.com/users/1481454957512101950"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="discord-link"
-          aria-label="Open Discord profile"
-        >
-          <div class="discord-card">
-            <div class="profile">
-              <div class="avatar">
-                <img id="avatar" src="" alt="Discord avatar" />
-                <img id="avatarFrame" class="avatar-frame" src="" alt="" style="display:none;" />
-                <div id="dot" class="status-dot offline"></div>
-              </div>
-
-              <div class="profile-meta">
-                <div id="displayName" class="display-name">Loading...</div>
-                <div id="tag" class="username-value">@username</div>
-                <div id="customStatus" class="custom-status">
-                  <span id="customStatusEmoji" class="custom-status-emoji"></span>
-                  <span id="customStatusText" class="custom-status-text">Just Chilling</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="discord-divider"></div>
-
-            <div id="activityCard" class="activity-card">
-              <div id="spotifyHeader" class="spotify-header" style="display:none;">
-                <span>Listening to Spotify</span>
-                <i class="fab fa-spotify" aria-hidden="true"></i>
-              </div>
-
-              <div class="activity-main">
-                <img id="activityCover" class="activity-cover" src="" alt="Activity Cover" style="display:none;" />
-
-                <div class="activity-text">
-                  <div id="activityName" class="activity-name">Just Chilling</div>
-                  <div id="activityArtist" class="activity-artist">No current activity</div>
-                </div>
-              </div>
-
-              <div id="spotifyProgressWrap" class="spotify-progress-wrap" style="display:none;">
-                <div class="progress">
-                  <div id="progressBar" class="progress-bar"></div>
-                </div>
-
-                <div class="time">
-                  <span id="timeCurrent">0:00</span>
-                  <span id="timeTotal">0:00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </section>
-    </div>
+      </a>
+    </section>
 
     <section class="social" id="social">
       <h2>Social <span>Media</span></h2>
 
       <div class="icons">
-        <a href="mailto:mohammedsheeb1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://discord.gg/ppbMFFxSFF" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        <a href="https://facebook.com/MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com/@MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://x.com/MohammedSheeb_" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a class="mail" href="mailto:mohammedsheeb1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a class="discord" href="https://discord.gg/ppbMFFxSFF" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a class="facebook" href="https://facebook.com/MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a class="instagram" href="https://www.instagram.com/mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a class="youtube" href="https://youtube.com/@MohammedSheeb" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a class="tiktok" href="https://www.tiktok.com/@mohammedsheeb" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a class="x-twitter" href="https://x.com/MohammedSheeb_" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
       </div>
     </section>
 
