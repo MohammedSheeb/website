@@ -589,6 +589,7 @@ header.scrolled{
   display:block;
   word-break:break-word;
   font-weight:750;
+  text-align:center;
 }
 
 .activity-card{
